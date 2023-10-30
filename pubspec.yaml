@@ -1,0 +1,6 @@
+name: tick_client
+environment:
+  sdk: ^3.0.5
+
+dev_dependencies:
+  melos: ^3.2.0
