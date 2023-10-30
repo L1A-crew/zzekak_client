@@ -1,0 +1,17 @@
+name: tick_client
+
+packages:
+  - app
+  - core
+  - data
+  - util
+
+
+scripts:
+  analyze:
+    exec: flutter analyze
+    description: 모든 코드의 분석을 실행합니다.
+
+  i:
+    exec: flutter pub get
+    description: 모든 패키지를 설치합니다.
