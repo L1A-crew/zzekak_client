@@ -1,4 +1,4 @@
-name: tick_client
+name: zzekak_client
 environment:
   sdk: ^3.0.5
 
