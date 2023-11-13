@@ -19,7 +19,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await Future.delayed(const Duration(seconds: 1));
       final AppRoutes page = await _vm.whereToGo();
       if (mounted) {
         context.goNamed(page.name);

@@ -1,5 +1,3 @@
-// ignore_for_file: constant_identifier_names
-
 part of '../zzekak_app.dart';
 
 const _pathSplash = "/";

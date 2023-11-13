@@ -6,5 +6,8 @@
 import 'package:zzekak/zzekak_app.dart';
 
 class SplashViewModel {
-  Future<AppRoutes> whereToGo() async => AppRoutes.HOME;
+  Future<AppRoutes> whereToGo() async {
+    await Future.delayed(const Duration(seconds: 1));
+    return AppRoutes.HOME;
+  }
 }
