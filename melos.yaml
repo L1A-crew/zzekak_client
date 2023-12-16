@@ -16,6 +16,10 @@ scripts:
     exec: flutter pub get
     description: 모든 패키지를 설치합니다.
 
+  codegen:
+    exec: flutter pub run build_runner build --delete-conflicting-outputs
+    description: 모든 코드를 생성합니다.
+
   update:
     exec: flutter pub upgrade
     description: 모든 패키지를 업데이트합니다.
