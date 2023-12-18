@@ -13,8 +13,8 @@ void main() {
     final Directory scriptLocationDir =
         Directory.fromUri(Platform.script).parent;
     final assetsDirectory = Directory('${scriptLocationDir.path}/assets');
-    final genDirectory = Directory('${scriptLocationDir.path}/gen');
-    final outputFile = File('${scriptLocationDir.path}/gen/asset_paths.dart');
+    final genDirectory = Directory('${scriptLocationDir.path}/lib/gen');
+    final outputFile = File('${genDirectory.path}/asset_paths.dart');
 
     // 'gen' 디렉토리가 없는 경우 생성
     if (!genDirectory.existsSync()) {
@@ -44,7 +44,7 @@ void main() {
     exit(1);
   }
   // ignore: avoid_print
-  print('Asset enum generated successfully.');
+  print('에셋 관리 Enum 이 성공적으로 생성되었습니다.');
 }
 
 final RegExp regex = RegExp(r'([^/]+)$');

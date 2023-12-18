@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:zzekak/gen/asset_paths.dart';
 import 'package:zzekak/schemes/color_schemes.dart';
 import 'package:zzekak/splash/vm_splash.dart';
 import 'package:zzekak/zzekak_app.dart';
@@ -32,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
         backgroundColor: context.color.primary,
         body: Center(
           child: SvgPicture.asset(
-            'assets/images/text_logo.svg',
+            AssetPaths.TEXT_LOGO_SVG.path,
             width: 80,
           ),
         ));

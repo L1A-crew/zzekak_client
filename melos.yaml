@@ -5,11 +5,14 @@ packages:
   - core
   - data
   - util
+  - zzekak_custom_lint
 
 
 scripts:
-  analyze:
-    exec: flutter analyze
+  a:
+    run: cd ./app && dart run custom_lint; first_command_status=$?; melos exec flutter analyze; second_command_status=$?; (exit $(( first_command_status || second_command_status )))
+
+
     description: 모든 코드의 분석을 실행합니다.
 
   i:

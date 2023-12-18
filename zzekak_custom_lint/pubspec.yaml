@@ -1,4 +1,4 @@
-name: core
+name: zzekak_custom_lint
 description: A starting point for Dart libraries or applications.
 version: 1.0.0
 # repository: https://github.com/my_org/my_repo
@@ -8,11 +8,11 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
-  equatable: 2.0.5
+  analyzer: 6.0.0
+  analyzer_plugin: 0.11.3
+  custom_lint_builder: 0.5.7
 
 dev_dependencies:
-  lints: 3.0.0
-  analyzer: 6.0.0
-  coverage: 1.7.1
-  test: 1.24.9
+  lints: ^2.1.0
+  test: ^1.24.0
   build_runner: 2.4.7
