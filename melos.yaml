@@ -17,7 +17,7 @@ scripts:
     description: 모든 패키지를 설치합니다.
 
   codegen:
-    exec: flutter pub run build_runner build --delete-conflicting-outputs
+    run: dart run ./app/asset_management_script.dart && melos exec flutter pub run build_runner build --delete-conflicting-outputs
     description: 모든 코드를 생성합니다.
 
   update:
