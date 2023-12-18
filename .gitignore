@@ -9,3 +9,4 @@ pubspec.lock
 **.config.dart
 pubspec_overrides.yaml
 **.iml
+**/gen/**
