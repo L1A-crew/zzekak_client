@@ -6,4 +6,4 @@
 // @since 2023-12-18
 //
 
-export './do_not_use_string_directly_in_img_widget.dart';
+export './use_asset_paths_enum.dart';

@@ -41,11 +41,13 @@ final class DoNotUseStringDirectlyInImgWidgetLintCode extends DartLintRule {
       bool isImage =
           node.staticType?.getDisplayString(withNullability: false) == 'Image';
       bool isAsset = node.constructorName.name?.name.contains('asset') ?? false;
-      if ((isSvgPicture || isImage) &&
-          isAsset &&
-          node.argumentList.arguments
-              .any((element) => element is StringLiteral)) {
-        reporter.reportErrorForNode(_code, node);
+      if ((isSvgPicture || isImage) && isAsset) {
+        final bool isAssetPathContains = node.argumentList.arguments
+            .map((final Expression e) => e.beginToken.lexeme)
+            .contains("AssetPaths");
+        if (!isAssetPathContains) {
+          reporter.reportErrorForNode(_code, node);
+        }
       }
     });
   }
