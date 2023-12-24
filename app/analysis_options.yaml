@@ -4,6 +4,8 @@ analyzer:
   exclude:
     - /**/*.g.dart
     - /**/*.mocks.dart
+  plugins:
+    - custom_lint
 
 linter:
   rules:
