@@ -4,7 +4,7 @@ publish_to: none
 version: 1.0.0+1
 
 environment:
-  sdk: 3.2.3
+  sdk: 3.2.5
 
 dependencies:
   flutter:
@@ -19,6 +19,9 @@ dependencies:
   go_router: 12.1.1
   get_it: 7.6.4
   injectable: 2.3.2
+  flutter_asset_builder:
+    git:
+      url: https://github.com/WongueShin/flutter_asset_builder
 
 dev_dependencies:
   flutter_test:

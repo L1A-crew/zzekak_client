@@ -10,3 +10,4 @@ pubspec.lock
 pubspec_overrides.yaml
 **.iml
 **/gen/**
+.idea/
