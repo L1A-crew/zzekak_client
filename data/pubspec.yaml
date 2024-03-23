@@ -4,21 +4,25 @@ publish_to: none
 version: 1.0.0
 
 environment:
-  sdk: 3.2.5
+  sdk: 3.3.2
 
 dependencies:
   # path: ^1.8.0
   core:
     path: ../core
+  dart_scope_functions: 0.1.4
+  dio: 5.4.0
+  equatable: 2.0.5
+  get_it: 7.6.7
+  json_annotation: 4.8.1
+  json_serializable: 6.7.1
+  shared_preferences: 2.2.2
   util:
     path: ../util
-  get_it: 7.6.4
-  injectable: 2.3.2
-  dio: 5.4.0
-  dart_scope_functions: 0.1.4
 
 dev_dependencies:
-  lints: 3.0.0
-  test: 1.24.9
   build_runner: 2.4.7
-  injectable_generator: 2.4.1
+  mockito: 5.4.4
+  lints: 3.0.0
+  faker: 2.1.0
+  test: 1.24.9

@@ -6,23 +6,17 @@
 // @since 2023-12-16
 //
 
+import 'package:core/model/auth_token/auth_token.dart';
 import 'package:core/model/identifier/identifier.dart';
 import 'package:core/model/representable/representable.dart';
 import 'package:core/model/user/user_model.dart';
 import 'package:core/repository/user_repository/user_repository.dart';
 import 'package:data/infra/mock_shard_preferences.dart';
 import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
-import 'package:util/di_env/di_env.dart';
 
-@web
-@mobile
-@dev
-@prod
-@Singleton(as: UserRepository)
 final class UserRepositoryImpl implements UserRepository {
-  @FactoryMethod()
-  static Future<UserRepository> create() async {
+  static Future<UserRepository> create(
+      {required final ThirdPartyAuthToken thirdPartyAuthToken}) async {
     await GetIt.instance.getAsync(type: MockSharedPreferences);
     return UserRepositoryImpl();
   }

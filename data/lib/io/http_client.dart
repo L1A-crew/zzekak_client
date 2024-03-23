@@ -13,31 +13,26 @@ abstract interface class HttpClient {
     'Content-Type': 'application/json',
   };
 
-  Future<HTTPResponse<ResponseBody>> get<RequestBody extends JsonSerializable,
-          ResponseBody extends JsonSerializable>(
+  Future<HTTPResponse> get<RequestBody extends JsonSerializable>(
       final HTTPRequest<RequestBody> request);
 
-  Future<HTTPResponse<ResponseBody>> post<RequestBody extends JsonSerializable,
-          ResponseBody extends JsonSerializable>(
+  Future<HTTPResponse> post<RequestBody extends JsonSerializable>(
       final HTTPRequest<RequestBody> request);
 
-  Future<HTTPResponse<ResponseBody>> put<RequestBody extends JsonSerializable,
-          ResponseBody extends JsonSerializable>(
+  Future<HTTPResponse> put<RequestBody extends JsonSerializable>(
       final HTTPRequest<RequestBody> request);
 
-  Future<HTTPResponse<ResponseBody>> delete<
-          RequestBody extends JsonSerializable,
-          ResponseBody extends JsonSerializable>(
+  Future<HTTPResponse> delete<RequestBody extends JsonSerializable>(
       final HTTPRequest<RequestBody> request);
 }
 
-final class HTTPResponse<T extends JsonSerializable> {
-  final T? data;
+final class HTTPResponse {
+  final Map<String, dynamic>? json;
   final int? statusCode;
   final Map<String, String>? headers;
 
   const HTTPResponse({
-    this.data,
+    this.json,
     this.headers,
     this.statusCode,
   });
