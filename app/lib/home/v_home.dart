@@ -3,16 +3,12 @@
  * Copyright (c) app.lib.home. All rights reserved.
  */
 import 'package:core/model/user/user_model.dart';
-import 'package:core/repository/user_repository/user_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
 part './string_home.dart';
 
 class HomeScreen extends StatefulWidget {
-  final UserRepository userRepository = GetIt.instance<UserRepository>();
-
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -24,11 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    widget.userRepository.findMe().then((final User value) {
-      setState(() {
-        user = value;
-      });
-    });
   }
 
   @override

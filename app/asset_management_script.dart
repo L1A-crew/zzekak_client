@@ -9,7 +9,8 @@ import 'dart:io';
 
 void main() {
   try {
-    final Directory scriptLocationDir = Directory.fromUri(Platform.script).parent;
+    final Directory scriptLocationDir =
+        Directory.fromUri(Platform.script).parent;
     final assetsDirectory = Directory('${scriptLocationDir.path}/assets');
     final genDirectory = Directory('${scriptLocationDir.path}/lib/gen');
     final outputFile = File('${genDirectory.path}/asset_paths.dart');
@@ -32,7 +33,7 @@ void main() {
     final enumEntries = files.map((file) {
       final String? path = regex.firstMatch(file.path)?.group(0);
       if (path == null) return '';
-      return '    ${path.toUpperCase().replaceAll('/', '_').replaceAll('.', '_')} (\'assets/$path\')';
+      return '    ${path.toUpperCase().replaceAll('/', '_').replaceAll('.', '_')} (\'${relativePathRegex.firstMatch(file.path)?.group(0)}\')';
     }).join(',\n');
 
     final enumString = template(enumEntries);
@@ -59,6 +60,9 @@ void collectFilesRecursively(Directory dir, List<File> fileList) {
 }
 
 final RegExp regex = RegExp(r'([^/]+)$');
+
+/// relative path를 enum 항목으로 변환하기 위한 정규식
+RegExp relativePathRegex = RegExp(r'assets/(.*)');
 
 String template(String assets) => """// 자동 생성된 파일입니다. 직접 수정하지 마세요.
 

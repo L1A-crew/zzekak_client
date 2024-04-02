@@ -19,7 +19,7 @@ extension AuthRetryExtension<T> on Future<T> {
     try {
       return await this;
     } catch (e) {
-      for (var i = 0; i < 10; i++) {
+      for (int i = 0; i < 10; i++) {
         if (e is ServerIOException && e.errorCode == IOErrorCode.UNAUTHORIZED) {
           try {
             await tokenProvidingCallback().then((value) => null);

@@ -6,8 +6,6 @@ import 'di/app_di_config.dart';
 late final GetIt getIt;
 
 void main() async {
-  // DI logic
-  getIt = await resolveDependency();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const ZzekakApp());
 }
