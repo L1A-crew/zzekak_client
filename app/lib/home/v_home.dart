@@ -4,6 +4,8 @@
  */
 import 'package:core/model/user/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:zzekak/zzekak_app.dart';
 
 part './string_home.dart';
 
@@ -15,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  User? user;
+  AuthenticationInfo? user;
 
   @override
   void initState() {
@@ -35,7 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Text(_KoKrString.TITLE.text),
           Text(
-              "${user?.identifier.toString() ?? "now loading..."} ${user?.nickName.toString()}")
+              "${user?.accessToken.toString() ?? "now loading..."} ${user?.refreshToken.toString()}"),
+          TextButton(
+            onPressed: () => GoRouter.of(context).go(AppRoutes.LOGIN.path),
+            child: Text("로그인 페이지로 이동"),
+          ),
         ],
       ),
     ));

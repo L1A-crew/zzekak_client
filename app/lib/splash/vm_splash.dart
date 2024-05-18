@@ -8,7 +8,7 @@ import 'package:zzekak/zzekak_app.dart';
 
 class SplashViewModel {
   Future<AppRoutes> initLogic() async {
-    await (await resolveDependency()).allReady();
+    await resolveDependency();
     await Future.delayed(const Duration(seconds: 1));
     return AppRoutes.HOME;
   }

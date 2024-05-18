@@ -19,12 +19,22 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: AppRoutes.SPLASH.path,
       name: AppRoutes.SPLASH.name,
-      builder: (final BuildContext context,final GoRouterState state) => const SplashScreen(),
+      builder: (final BuildContext context, final GoRouterState state) =>
+          const SplashScreen(),
     ),
     GoRoute(
       path: AppRoutes.HOME.path,
       name: AppRoutes.HOME.name,
-      builder: (context, state) => HomeScreen(),
+      builder: (final BuildContext context, final GoRouterState state) =>
+          const HomeScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.LOGIN.path,
+      name: AppRoutes.LOGIN.name,
+      builder: (final BuildContext context, final GoRouterState state) =>
+          LoginScreen(
+        di: GetIt.instance,
+      ),
     ),
   ],
 );

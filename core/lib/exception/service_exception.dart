@@ -25,3 +25,12 @@ class ServiceException implements Exception {
   trace: $trace
   }""";
 }
+
+class LoginRequiredException extends ServiceException {
+  LoginRequiredException({
+    super.trace,
+    super.cause,
+  }) : super(
+          message: '로그인이 필요합니다.',
+        );
+}

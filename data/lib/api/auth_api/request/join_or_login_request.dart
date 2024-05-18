@@ -63,3 +63,11 @@ extension _ThirdPartyAuthTokenExtension on ThirdPartyAuthToken {
         AppleAuthToken() => AuthProvider.apple,
       };
 }
+
+extension AuthProviderExt on AuthProvider {
+  static AuthProvider fromString(final String value) => switch (value) {
+        'ka' => AuthProvider.kakao,
+        'ap' => AuthProvider.apple,
+        String() => throw UnimplementedError(),
+      };
+}

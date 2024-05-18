@@ -19,7 +19,7 @@ final class DioHttpClientImpl implements HttpClient {
   const DioHttpClientImpl(this._dioInstance, this._baseUrl);
 
   factory DioHttpClientImpl.create() {
-    return DioHttpClientImpl(Dio(), 'http://localhost:8080');
+    return DioHttpClientImpl(Dio(), 'http://chunbae-home.iptime.org:6070');
   }
 
   @override

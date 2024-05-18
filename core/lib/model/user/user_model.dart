@@ -10,30 +10,27 @@ import 'package:core/model/identifier/identifier.dart';
 import 'package:core/model/representable/representable.dart';
 import 'package:equatable/equatable.dart';
 
-/// zzekak_client 의 사용자를 표현합니다.
-abstract interface class User {
-  /// 유저를 식별할 수 있는 고유한 값을 의미합니다.
-  Identifier get identifier;
+/// zzekak_client 의 식별정보.
+abstract interface class AuthenticationInfo {
+  String get accessToken;
+  String get refreshToken;
 
-  /// 유저가 회원가입 과정에서 설정한 닉네임
-  NickName get nickName;
-
-  factory User(Identifier identifier, NickName nickName) =>
-      _UserImpl(identifier, nickName);
+  factory AuthenticationInfo(String accessToken, String refreshToken) =>
+      _UserImpl(accessToken, refreshToken);
 }
 
-final class _UserImpl extends Equatable implements User {
+final class _UserImpl extends Equatable implements AuthenticationInfo {
   @override
-  final Identifier identifier;
+  final String accessToken;
   @override
-  final NickName nickName;
+  final String refreshToken;
 
-  const _UserImpl(this.identifier, this.nickName);
+  const _UserImpl(this.accessToken, this.refreshToken);
 
   @override
   List<Object> get props => [
-        identifier,
-        nickName,
+        accessToken,
+        refreshToken,
       ];
 
   @override

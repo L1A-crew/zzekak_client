@@ -17,7 +17,7 @@ abstract interface class AuthenticationAPI {
 }
 
 final class AuthenticationAPIImpl implements AuthenticationAPI {
-  static const String _apiUrl = '/user';
+  static const String _apiUrl = 'user';
 
   final HttpClient _httpClient;
 
