@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:zzekak/gen/asset_paths.dart';
 import 'package:zzekak/schemes/color_schemes.dart';
-import 'package:zzekak/splash/vm_splash.dart';
+import 'package:zzekak/screen/splash/vm_splash.dart';
 import 'package:zzekak/zzekak_app.dart';
 
 class SplashScreen extends StatefulWidget {

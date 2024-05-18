@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:zzekak/zzekak_app.dart';
 
-part './string_home.dart';
+part 'string_home.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

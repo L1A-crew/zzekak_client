@@ -35,11 +35,9 @@ final class LoginViewModel {
         ? UserApi.instance.loginWithKakaoTalk()
         : UserApi.instance.loginWithKakaoAccount());
 
-    print(kakaoOauthToken.idToken);
-
     final JoinOrLoginResponse res =
         await _authenticationAPI.joinOrLogin(JoinOrLoginRequest(
-      token: kakaoOauthToken.idToken?? '',
+      token: kakaoOauthToken.idToken ?? '',
       provider: AuthProvider.kakao,
     ));
 

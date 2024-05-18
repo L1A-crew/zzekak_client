@@ -9,7 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:zzekak/gen/asset_paths.dart';
-import 'package:zzekak/login/vm_login.dart';
+import 'package:zzekak/screen/login/vm_login.dart';
 
 class LoginScreen extends StatelessWidget {
   final LoginViewModel _viewModel;

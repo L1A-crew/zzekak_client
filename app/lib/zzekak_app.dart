@@ -6,10 +6,10 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:zzekak/home/v_home.dart';
-import 'package:zzekak/login/v_login.dart';
+import 'package:zzekak/screen/home/v_home.dart';
+import 'package:zzekak/screen/login/v_login.dart';
 import 'package:zzekak/schemes/color_schemes.dart';
-import 'package:zzekak/splash/v_splash.dart';
+import 'package:zzekak/screen/splash/v_splash.dart';
 
 part 'app_routes.dart';
 
