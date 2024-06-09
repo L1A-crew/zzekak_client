@@ -34,7 +34,7 @@ final class AuthenticationAPIImpl implements AuthenticationAPI {
       final JoinOrLoginRequest request) async {
     final HTTPResponse response =
         await _httpClient.post(HTTPRequest<JoinOrLoginRequest>(
-      url: '$_apiUrl/joinOrLogin',
+      url: '$_apiUrl/join_or_login',
       body: request,
     ));
 

@@ -7,12 +7,12 @@ environment:
   sdk: 3.3.2
 
 dependencies:
-
   core:
     path: ../core/
   cupertino_icons: 1.0.6
   data:
     path: ../data/
+  dart_scope_functions: 0.1.4
   flutter:
     sdk: flutter
   flutter_asset_builder:

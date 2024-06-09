@@ -24,7 +24,9 @@ enum AuthProvider {
 @JsonSerializable()
 final class JoinOrLoginRequest extends Equatable
     implements serializable.JsonSerializable {
+  @JsonKey(name: "token")
   final String token;
+  @JsonKey(name: "authentication_type")
   final AuthProvider provider;
 
   const JoinOrLoginRequest({

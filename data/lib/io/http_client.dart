@@ -10,6 +10,7 @@ import 'package:data/io/json_serializable.dart';
 
 abstract interface class HttpClient {
   static const Map<String, String> DEFAULT_HEADER = {
+    'accept': 'application/json',
     'Content-Type': 'application/json',
   };
 

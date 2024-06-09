@@ -6,15 +6,16 @@
 // @since 2024-04-16
 //
 
+import 'package:core/model/auth_token/auth_token.dart';
 import 'package:core/model/user/user_model.dart';
 import 'package:core/repository/user_repository/user_repository.dart';
 import 'package:data/api/auth_api/auth_api.dart';
 import 'package:data/api/auth_api/request/join_or_login_request.dart';
 import 'package:data/api/auth_api/response/join_or_login_response.dart';
 import 'package:get_it/get_it.dart';
-import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:zzekak/mixin/login.dart';
 
-final class LoginViewModel {
+final class LoginViewModel with CertificationUsecase {
   final TokenProvider _tokenProvider;
   final AuthenticationAPI _authenticationAPI;
 
@@ -30,15 +31,16 @@ final class LoginViewModel {
     }
   }
 
-  Future<AuthenticationInfo> login() async {
-    final OAuthToken kakaoOauthToken = await ((await isKakaoTalkInstalled())
-        ? UserApi.instance.loginWithKakaoTalk()
-        : UserApi.instance.loginWithKakaoAccount());
+  Future<AuthenticationInfo> whenLoginBtnTapped(final SocialLoginEvent event) async {
+    final ThirdPartyAuthToken token = await socialLogin(event: event);
 
     final JoinOrLoginResponse res =
         await _authenticationAPI.joinOrLogin(JoinOrLoginRequest(
-      token: kakaoOauthToken.idToken ?? '',
-      provider: AuthProvider.kakao,
+      token: token.oAuthToken,
+      provider: switch (token) {
+        KakakoTalkAuthToken() => AuthProvider.kakao,
+        AppleAuthToken() => AuthProvider.apple,
+      },
     ));
 
     final AuthenticationInfo authInfo = AuthenticationInfo(

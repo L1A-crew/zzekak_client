@@ -36,12 +36,17 @@ sealed class ThirdPartyAuthToken extends Equatable {
 
 /// 카카오톡 로그인을 통해 발급받은 O-Auth 토큰
 final class KakakoTalkAuthToken extends ThirdPartyAuthToken {
+  final String accessToken;
+  final String refreshToken;
+
   const KakakoTalkAuthToken({
     required super.oAuthToken,
+    required this.accessToken,
+    required this.refreshToken,
   });
 
   @override
-  List<Object> get props => [oAuthToken];
+  List<Object> get props => [oAuthToken, accessToken, refreshToken];
 
   @override
   bool get stringify => true;

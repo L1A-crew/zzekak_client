@@ -9,13 +9,13 @@ part of 'join_or_login_request.dart';
 JoinOrLoginRequest _$JoinOrLoginRequestFromJson(Map<String, dynamic> json) =>
     JoinOrLoginRequest(
       token: json['token'] as String,
-      provider: $enumDecode(_$AuthProviderEnumMap, json['provider']),
+      provider: $enumDecode(_$AuthProviderEnumMap, json['authentication_type']),
     );
 
 Map<String, dynamic> _$JoinOrLoginRequestToJson(JoinOrLoginRequest instance) =>
     <String, dynamic>{
       'token': instance.token,
-      'provider': _$AuthProviderEnumMap[instance.provider]!,
+      'authentication_type': _$AuthProviderEnumMap[instance.provider]!,
     };
 
 const _$AuthProviderEnumMap = {

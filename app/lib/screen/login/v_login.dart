@@ -9,6 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:zzekak/gen/asset_paths.dart';
+import 'package:zzekak/mixin/login.dart';
 import 'package:zzekak/screen/login/vm_login.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -31,7 +32,8 @@ class LoginScreen extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () async {
-                final res = await _viewModel.login();
+                final res =
+                    await _viewModel.whenLoginBtnTapped(KakaoLoginEvent());
                 if (context.mounted) {
                   showDialog(
                     context: context,

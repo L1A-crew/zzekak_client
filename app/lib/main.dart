@@ -8,7 +8,7 @@ late final GetIt getIt;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   KakaoSdk.init(
-      javaScriptAppKey: "de156183248b7dfe546344b070cd40f0",
-      nativeAppKey: "2d51c85d511073700883627e53665974");
+      javaScriptAppKey: "1be9d48b92741228526daa7cb8e14ced",
+      nativeAppKey: "5264e2b13b4d8bf7d5c0f42f68e11eb0");
   runApp(const ZzekakApp());
 }
