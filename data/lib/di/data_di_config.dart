@@ -5,7 +5,7 @@
 // @email won7963kr@gmail.com
 // @since 2023-12-16
 //
-import 'package:core/repository/user_repository/user_repository.dart';
+import 'package:core/repository/token_provider//token_provider.dart';
 import 'package:data/api/auth_api/auth_api.dart';
 import 'package:data/io/dio_http_client_impl.dart';
 import 'package:data/io/http_client.dart';

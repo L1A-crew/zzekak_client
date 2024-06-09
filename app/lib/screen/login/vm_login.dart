@@ -8,7 +8,7 @@
 
 import 'package:core/model/auth_token/auth_token.dart';
 import 'package:core/model/user/user_model.dart';
-import 'package:core/repository/user_repository/user_repository.dart';
+import 'package:core/repository/token_provider/token_provider.dart';
 import 'package:data/api/auth_api/auth_api.dart';
 import 'package:data/api/auth_api/request/join_or_login_request.dart';
 import 'package:data/api/auth_api/response/join_or_login_response.dart';
@@ -31,7 +31,8 @@ final class LoginViewModel with CertificationUsecase {
     }
   }
 
-  Future<AuthenticationInfo> whenLoginBtnTapped(final SocialLoginEvent event) async {
+  Future<AuthenticationInfo> whenLoginBtnTapped(
+      final SocialLoginEvent event) async {
     final ThirdPartyAuthToken token = await socialLogin(event: event);
 
     final JoinOrLoginResponse res =

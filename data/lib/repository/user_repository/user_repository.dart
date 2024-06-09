@@ -8,7 +8,7 @@
 
 import 'package:core/model/identifier/identifier.dart';
 import 'package:core/model/user/user_model.dart';
-import 'package:core/repository/user_repository/user_repository.dart';
+import 'package:core/repository/token_provider/token_provider.dart';
 import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:data/api/auth_api/auth_api.dart';
 import 'package:data/api/auth_api/request/join_or_login_request.dart';
