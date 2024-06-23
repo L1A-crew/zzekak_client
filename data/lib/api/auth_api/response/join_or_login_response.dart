@@ -7,23 +7,24 @@
 //
 
 import 'package:core/model/auth_token/auth_token.dart';
+import 'package:data/api/common_dto/token_content_dto.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:data/io/json_serializable.dart' as serializable;
+import 'package:data/io/json_serializable.dart';
 
 part 'join_or_login_response.g.dart';
 
 @JsonSerializable()
 final class JoinOrLoginResponse extends Equatable
-    implements serializable.JsonSerializable {
-  @JsonKey(name: 'accessToken')
-  final String accessToken;
-  @JsonKey(name: 'refreshToken')
-  final String refreshToken;
+    implements ZzekakJsonSerializable {
+  @JsonKey(name: 'token_content')
+  final TokenContentDTO tokenContent;
+  @JsonKey(name: 'is_login_first', defaultValue: false)
+  final bool isFirstLogin;
 
   const JoinOrLoginResponse({
-    required this.accessToken,
-    required this.refreshToken,
+    required this.tokenContent,
+    required this.isFirstLogin,
   });
 
   factory JoinOrLoginResponse.fromJson(Map<String, dynamic> json) =>
@@ -33,11 +34,11 @@ final class JoinOrLoginResponse extends Equatable
   Map<String, dynamic> toJson() => _$JoinOrLoginResponseToJson(this);
 
   @override
-  serializable.JsonSerializable fromJson(Map<String, dynamic> json) =>
+  ZzekakJsonSerializable fromJson(Map<String, dynamic> json) =>
       JoinOrLoginResponse.fromJson(json);
 
   @override
-  List<Object> get props => [accessToken, refreshToken];
+  List<Object> get props => [tokenContent, isFirstLogin];
 
   @override
   bool get stringify => true;
@@ -45,7 +46,7 @@ final class JoinOrLoginResponse extends Equatable
 
 extension JoinOrLoginResponseExtension on JoinOrLoginResponse {
   FirstPartyAuthToken toFirstPartyAuthToken() => FirstPartyAuthToken(
-        accessToken: accessToken,
-        refreshToken: refreshToken,
+        accessToken: tokenContent.accessToken,
+        refreshToken: tokenContent.refreshToken,
       );
 }

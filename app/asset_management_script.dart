@@ -41,9 +41,11 @@ void main() {
     // 생성된 enum 문자열을 파일에 쓰기
     outputFile.writeAsStringSync(enumString);
   } catch (e, s) {
+    // ignore: avoid_print
     print('Error: $e\nStacktrace: $s');
     exit(1);
   }
+  // ignore: avoid_print
   print('에셋 관리 Enum 이 성공적으로 생성되었습니다.');
 }
 

@@ -6,13 +6,12 @@
 // @since 2023-12-09
 //
 
-import 'package:core/model/identifier/identifier.dart';
-import 'package:core/model/representable/representable.dart';
 import 'package:equatable/equatable.dart';
 
 /// zzekak_client 의 식별정보.
 abstract interface class AuthenticationInfo {
   String get accessToken;
+
   String get refreshToken;
 
   factory AuthenticationInfo(String accessToken, String refreshToken) =>

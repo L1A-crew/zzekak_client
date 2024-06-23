@@ -28,7 +28,8 @@ import 'package:mockito/src/dummies.dart' as _i5;
 /// See the documentation for Mockito's code generation for more information.
 class MockHttpClient extends _i1.Mock implements _i2.HttpClient {
   @override
-  _i3.Future<_i2.HTTPResponse> get<RequestBody extends _i4.JsonSerializable>(
+  _i3.Future<_i2.HTTPResponse> get<
+              RequestBody extends _i4.ZzekakJsonSerializable>(
           _i2.HTTPRequest<RequestBody>? request) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -54,7 +55,8 @@ class MockHttpClient extends _i1.Mock implements _i2.HttpClient {
       ) as _i3.Future<_i2.HTTPResponse>);
 
   @override
-  _i3.Future<_i2.HTTPResponse> post<RequestBody extends _i4.JsonSerializable>(
+  _i3.Future<_i2.HTTPResponse> post<
+              RequestBody extends _i4.ZzekakJsonSerializable>(
           _i2.HTTPRequest<RequestBody>? request) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -80,7 +82,8 @@ class MockHttpClient extends _i1.Mock implements _i2.HttpClient {
       ) as _i3.Future<_i2.HTTPResponse>);
 
   @override
-  _i3.Future<_i2.HTTPResponse> put<RequestBody extends _i4.JsonSerializable>(
+  _i3.Future<_i2.HTTPResponse> put<
+              RequestBody extends _i4.ZzekakJsonSerializable>(
           _i2.HTTPRequest<RequestBody>? request) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -106,7 +109,8 @@ class MockHttpClient extends _i1.Mock implements _i2.HttpClient {
       ) as _i3.Future<_i2.HTTPResponse>);
 
   @override
-  _i3.Future<_i2.HTTPResponse> delete<RequestBody extends _i4.JsonSerializable>(
+  _i3.Future<_i2.HTTPResponse> delete<
+              RequestBody extends _i4.ZzekakJsonSerializable>(
           _i2.HTTPRequest<RequestBody>? request) =>
       (super.noSuchMethod(
         Invocation.method(

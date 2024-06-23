@@ -8,13 +8,14 @@ part of 'join_or_login_response.dart';
 
 JoinOrLoginResponse _$JoinOrLoginResponseFromJson(Map<String, dynamic> json) =>
     JoinOrLoginResponse(
-      accessToken: json['accessToken'] as String,
-      refreshToken: json['refreshToken'] as String,
+      tokenContent: TokenContentDTO.fromJson(
+          json['token_content'] as Map<String, dynamic>),
+      isFirstLogin: json['is_login_first'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$JoinOrLoginResponseToJson(
         JoinOrLoginResponse instance) =>
     <String, dynamic>{
-      'accessToken': instance.accessToken,
-      'refreshToken': instance.refreshToken,
+      'token_content': instance.tokenContent,
+      'is_login_first': instance.isFirstLogin,
     };

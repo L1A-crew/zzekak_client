@@ -6,8 +6,8 @@
 // @since 2024-02-07
 //
 
-abstract interface class JsonSerializable {
+abstract interface class ZzekakJsonSerializable {
   Map<String, dynamic> toJson();
 
-  JsonSerializable fromJson(Map<String, dynamic> json);
+  ZzekakJsonSerializable fromJson(Map<String, dynamic> json);
 }

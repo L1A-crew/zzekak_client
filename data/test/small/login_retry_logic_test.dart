@@ -11,6 +11,7 @@ import 'dart:math';
 import 'package:data/api/auth_api/auth_api.dart';
 import 'package:data/api/auth_api/request/join_or_login_request.dart';
 import 'package:data/api/auth_api/response/join_or_login_response.dart';
+import 'package:data/api/common_dto/token_content_dto.dart';
 import 'package:data/io/http_client.dart';
 import 'package:faker/faker.dart';
 import 'package:mockito/mockito.dart';
@@ -30,8 +31,11 @@ void main() async {
       final String expectedRefresh = Faker().randomGenerator.string(15);
 
       provideDummy(HTTPResponse(json: {
-        'accessToken': expectedAccess,
-        'refreshToken': expectedRefresh
+        "token_content": {
+          "access_token": expectedAccess,
+          "refresh_token": expectedRefresh,
+        },
+        "is_login_first": true
       }));
 
       final JoinOrLoginResponse res = await sut.joinOrLogin(
@@ -40,7 +44,12 @@ void main() async {
       expect(
           res,
           equals(JoinOrLoginResponse(
-              accessToken: expectedAccess, refreshToken: expectedRefresh)));
+            tokenContent: TokenContentDTO(
+              accessToken: expectedAccess,
+              refreshToken: expectedRefresh,
+            ),
+            isFirstLogin: true,
+          )));
     });
   });
 }

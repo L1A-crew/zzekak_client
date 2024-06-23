@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
               "${user?.accessToken.toString() ?? "now loading..."} ${user?.refreshToken.toString()}"),
           TextButton(
             onPressed: () => GoRouter.of(context).go(AppRoutes.LOGIN.path),
-            child: Text("로그인 페이지로 이동"),
+            child: const Text("로그인 페이지로 이동"),
           ),
         ],
       ),

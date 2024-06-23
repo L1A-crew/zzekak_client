@@ -37,4 +37,8 @@ final GoRouter _router = GoRouter(
       ),
     ),
   ],
+  redirect: (final BuildContext context, final GoRouterState state) async {
+    GetIt.instance.get<TokenProvider>().findMe();
+    return null;
+  },
 );

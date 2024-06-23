@@ -23,7 +23,7 @@ enum AuthProvider {
 
 @JsonSerializable()
 final class JoinOrLoginRequest extends Equatable
-    implements serializable.JsonSerializable {
+    implements serializable.ZzekakJsonSerializable {
   @JsonKey(name: "token")
   final String token;
   @JsonKey(name: "authentication_type")
@@ -55,7 +55,7 @@ final class JoinOrLoginRequest extends Equatable
   bool get stringify => true;
 
   @override
-  serializable.JsonSerializable fromJson(Map<String, dynamic> json) =>
+  serializable.ZzekakJsonSerializable fromJson(Map<String, dynamic> json) =>
       JoinOrLoginRequest.fromJson(json);
 }
 

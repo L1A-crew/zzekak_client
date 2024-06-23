@@ -52,8 +52,8 @@ final class TokenProviderImpl implements TokenProvider {
         ),
       ))
           .let((final JoinOrLoginResponse it) => AuthenticationInfo(
-                it.accessToken,
-                it.refreshToken,
+                it.tokenContent.accessToken,
+                it.tokenContent.refreshToken,
               ));
     } catch (e) {
       rethrow;

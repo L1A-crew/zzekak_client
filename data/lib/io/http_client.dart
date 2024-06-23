@@ -14,16 +14,16 @@ abstract interface class HttpClient {
     'Content-Type': 'application/json',
   };
 
-  Future<HTTPResponse> get<RequestBody extends JsonSerializable>(
+  Future<HTTPResponse> get<RequestBody extends ZzekakJsonSerializable>(
       final HTTPRequest<RequestBody> request);
 
-  Future<HTTPResponse> post<RequestBody extends JsonSerializable>(
+  Future<HTTPResponse> post<RequestBody extends ZzekakJsonSerializable>(
       final HTTPRequest<RequestBody> request);
 
-  Future<HTTPResponse> put<RequestBody extends JsonSerializable>(
+  Future<HTTPResponse> put<RequestBody extends ZzekakJsonSerializable>(
       final HTTPRequest<RequestBody> request);
 
-  Future<HTTPResponse> delete<RequestBody extends JsonSerializable>(
+  Future<HTTPResponse> delete<RequestBody extends ZzekakJsonSerializable>(
       final HTTPRequest<RequestBody> request);
 }
 
@@ -39,7 +39,7 @@ final class HTTPResponse {
   });
 }
 
-final class HTTPRequest<T extends JsonSerializable> {
+final class HTTPRequest<T extends ZzekakJsonSerializable> {
   final String url;
   final Map<String, String> headers;
   final T? body;

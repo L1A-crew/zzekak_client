@@ -23,7 +23,7 @@ final class DioHttpClientImpl implements HttpClient {
   }
 
   @override
-  Future<HTTPResponse> get<RequestBody extends JsonSerializable>(
+  Future<HTTPResponse> get<RequestBody extends ZzekakJsonSerializable>(
       final HTTPRequest<RequestBody> request) async {
     try {
       return _dioInstance
@@ -47,7 +47,7 @@ final class DioHttpClientImpl implements HttpClient {
   }
 
   @override
-  Future<HTTPResponse> post<RequestBody extends JsonSerializable>(
+  Future<HTTPResponse> post<RequestBody extends ZzekakJsonSerializable>(
       final HTTPRequest<RequestBody> request) async {
     try {
       return _dioInstance
@@ -71,7 +71,7 @@ final class DioHttpClientImpl implements HttpClient {
   }
 
   @override
-  Future<HTTPResponse> put<RequestBody extends JsonSerializable>(
+  Future<HTTPResponse> put<RequestBody extends ZzekakJsonSerializable>(
       final HTTPRequest<RequestBody> request) {
     try {
       return _dioInstance
@@ -95,7 +95,7 @@ final class DioHttpClientImpl implements HttpClient {
   }
 
   @override
-  Future<HTTPResponse> delete<RequestBody extends JsonSerializable>(
+  Future<HTTPResponse> delete<RequestBody extends ZzekakJsonSerializable>(
       final HTTPRequest<RequestBody> request) {
     try {
       return _dioInstance
@@ -120,7 +120,7 @@ final class DioHttpClientImpl implements HttpClient {
 }
 
 extension _DioHttpResponseExtension on Response {
-  HTTPResponse convertToHTTPResponse<T extends JsonSerializable>() {
+  HTTPResponse convertToHTTPResponse<T extends ZzekakJsonSerializable>() {
     return HTTPResponse(
       json: data,
       headers: headers.map.map((key, value) => MapEntry(key, value.join(','))),

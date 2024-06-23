@@ -45,8 +45,8 @@ final class LoginViewModel with CertificationUsecase {
     ));
 
     final AuthenticationInfo authInfo = AuthenticationInfo(
-      res.accessToken,
-      res.refreshToken,
+      res.tokenContent.accessToken,
+      res.tokenContent.refreshToken,
     );
 
     await _tokenProvider.save(authInfo);
