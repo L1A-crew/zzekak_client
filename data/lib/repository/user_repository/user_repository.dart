@@ -17,9 +17,6 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final class TokenProviderImpl implements TokenProvider {
-  static final String _keyUserIdentifier = 'user_identifier';
-  static final String _keyProvider = 'provider';
-
   final AuthenticationAPI _authenticationAPI;
   final SharedPreferences _sharedPreferences;
 
@@ -40,10 +37,10 @@ final class TokenProviderImpl implements TokenProvider {
     String? providerInput,
   }) async {
     try {
-      final String token =
-          tokenInput ?? _sharedPreferences.getString(_keyUserIdentifier)!;
-      final String provider =
-          providerInput ?? _sharedPreferences.getString(_keyProvider)!;
+      final String token = tokenInput ??
+          _sharedPreferences.getString(TokenProvider.keyAccessToken)!;
+      final String provider = providerInput ??
+          _sharedPreferences.getString(TokenProvider.keyProvider)!;
 
       return (await _authenticationAPI.joinOrLogin(
         JoinOrLoginRequest(
@@ -66,7 +63,12 @@ final class TokenProviderImpl implements TokenProvider {
   }
 
   @override
-  Future<AuthenticationInfo> save(AuthenticationInfo user) {
-    throw UnimplementedError();
+  Future<AuthenticationInfo> save(AuthenticationInfo user) async {
+    await _sharedPreferences.setString(
+        TokenProvider.keyAccessToken, user.accessToken);
+    await _sharedPreferences.setString(
+        TokenProvider.keyRefreshToken, user.refreshToken);
+
+    return user;
   }
 }

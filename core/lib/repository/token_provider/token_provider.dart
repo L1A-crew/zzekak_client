@@ -10,6 +10,10 @@ import 'package:core/model/identifier/identifier.dart';
 import 'package:core/model/user/user_model.dart';
 
 abstract interface class TokenProvider {
+  static const String keyAccessToken = 'access_token';
+  static const String keyRefreshToken = 'refresh_token';
+  static const String keyProvider = 'provider';
+
   /// [identifier] 에 해당하는 [AuthenticationInfo] 를 반환합니다.
   Future<AuthenticationInfo> findUserByIdentifier(Identifier identifier);
 
