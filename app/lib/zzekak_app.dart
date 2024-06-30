@@ -4,6 +4,7 @@
  */
 
 import 'package:core/repository/token_provider/token_provider.dart';
+import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';

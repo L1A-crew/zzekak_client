@@ -38,7 +38,9 @@ final GoRouter _router = GoRouter(
     ),
   ],
   redirect: (final BuildContext context, final GoRouterState state) async {
-    GetIt.instance.get<TokenProvider>().findMe();
+    (await GetIt.instance.get<TokenProvider>().findMe()).also((it) {
+      print(it);
+    });
     return null;
   },
 );

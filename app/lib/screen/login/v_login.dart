@@ -6,6 +6,8 @@
 // @since 2024-04-13
 //
 
+import 'package:core/model/user/user_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:zzekak/gen/asset_paths.dart';
@@ -34,13 +36,8 @@ class LoginScreen extends StatelessWidget {
               onTap: () async {
                 final res =
                     await _viewModel.whenLoginBtnTapped(KakaoLoginEvent());
-                if (context.mounted) {
-                  showDialog(
-                    context: context,
-                    builder: (_) => Text(
-                      res.toString(),
-                    ),
-                  );
+                if (kDebugMode) {
+                  print(res);
                 }
               },
               child: Image.asset(AssetPaths.KAKAO_LOGIN_PNG.path),

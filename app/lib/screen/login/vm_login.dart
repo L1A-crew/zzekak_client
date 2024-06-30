@@ -31,8 +31,11 @@ final class LoginViewModel with CertificationUsecase {
     }
   }
 
-  Future<AuthenticationInfo> whenLoginBtnTapped(
-      final SocialLoginEvent event) async {
+  Future<
+      ({
+        AuthenticationInfo authenticationInfo,
+        bool isFirstLogin,
+      })> whenLoginBtnTapped(final SocialLoginEvent event) async {
     final ThirdPartyAuthToken token = await socialLogin(event: event);
 
     final JoinOrLoginResponse res =
@@ -51,6 +54,9 @@ final class LoginViewModel with CertificationUsecase {
 
     await _tokenProvider.save(authInfo);
 
-    return authInfo;
+    return (
+      authenticationInfo: authInfo,
+      isFirstLogin: res.isFirstLogin,
+    );
   }
 }

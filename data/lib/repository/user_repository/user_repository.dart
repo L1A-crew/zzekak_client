@@ -32,7 +32,7 @@ final class TokenProviderImpl implements TokenProvider {
         _sharedPreferences = searchPreferences;
 
   @override
-  Future<AuthenticationInfo> findMe({
+  Future<AuthenticationInfo?> findMe({
     String? tokenInput,
     String? providerInput,
   }) async {
@@ -53,7 +53,7 @@ final class TokenProviderImpl implements TokenProvider {
                 it.tokenContent.refreshToken,
               ));
     } catch (e) {
-      rethrow;
+      return null;
     }
   }
 
