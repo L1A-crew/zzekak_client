@@ -10,5 +10,7 @@ pubspec.lock
 pubspec_overrides.yaml
 **.iml
 **/gen/**
-.idea/
+**.flutter-plugins
+**.flutter-plugins-dependencies
 /build/
+/.idea
