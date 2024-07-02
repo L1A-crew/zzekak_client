@@ -3,11 +3,12 @@
  * Copyright (c) . All rights reserved.
  */
 
-import 'package:zzekak/zzekak_app.dart';
+
+import 'package:zzekak/routes/app_routes.dart';
 
 class SplashViewModel {
-  Future<AppRoutes> initLogic() async {
+  Future<String> initLogic() async {
     await Future.delayed(const Duration(seconds: 1));
-    return AppRoutes.HOME;
+    return HomeRoute.PATH;
   }
 }

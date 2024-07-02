@@ -3,17 +3,9 @@
  * Copyright (c) app.lib. All rights reserved.
  */
 
-import 'package:core/repository/token_provider/token_provider.dart';
-import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
-import 'package:zzekak/screen/home/v_home.dart';
-import 'package:zzekak/screen/login/v_login.dart';
+import 'package:zzekak/routes/app_routes.dart';
 import 'package:zzekak/schemes/color_schemes.dart';
-import 'package:zzekak/screen/splash/v_splash.dart';
-
-part 'app_routes.dart';
 
 class ZzekakApp extends StatelessWidget {
   /// ko ver. 째깍
@@ -27,7 +19,7 @@ class ZzekakApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: appName,
-      routerConfig: _router,
+      routerConfig: router,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         useMaterial3: true,

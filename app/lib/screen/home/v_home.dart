@@ -5,6 +5,7 @@
 import 'package:core/model/user/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:zzekak/routes/app_routes.dart';
 import 'package:zzekak/zzekak_app.dart';
 
 part 'string_home.dart';
@@ -39,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Text(
               "${user?.accessToken.toString() ?? "now loading..."} ${user?.refreshToken.toString()}"),
           TextButton(
-            onPressed: () => GoRouter.of(context).go(AppRoutes.LOGIN.path),
+            onPressed: () => GoRouter.of(context).go(LoginRoute.PATH),
             child: const Text("로그인 페이지로 이동"),
           ),
         ],
