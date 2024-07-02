@@ -8,6 +8,7 @@
 
 import 'package:data/di/data_di_config.dart';
 import 'package:get_it/get_it.dart';
+import 'package:zzekak/screen/home/v_home.dart';
 
 Future<GetIt> resolveDependency() async {
   GetIt getIt = await configureDataDependencies();

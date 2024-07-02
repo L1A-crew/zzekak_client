@@ -18,7 +18,7 @@ abstract interface class TokenProvider {
   Future<AuthenticationInfo> findUserByIdentifier(Identifier identifier);
 
   /// 현재 로그인한 [AuthenticationInfo] 를 반환합니다.
-  Future<AuthenticationInfo> findMe();
+  Future<AuthenticationInfo?> findMe();
 
   /// [user] 를 저장소에 저장합니다.
   Future<AuthenticationInfo> save(AuthenticationInfo user);

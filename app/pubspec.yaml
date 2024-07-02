@@ -33,6 +33,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   injectable_generator: 2.4.1
+  go_router_builder: 2.7.0
   zzekak_custom_lint:
     path: ../zzekak_custom_lint/
 
