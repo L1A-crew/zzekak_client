@@ -7,35 +7,26 @@
 //
 
 enum IOErrorCode {
-  UNAUTHORIZED(401),
-  FORBIDDEN(403),
-  NOT_FOUND(404),
-  REQUEST_TIMEOUT(408),
-  UPDATE_REQUIRED(426),
-  MALFORMED_REQUEST(422),
-  INTERNAL_SERVER_ERROR(500),
-  UNKNOWN(0);
+  UNAUTHORIZED("U-001"),
+  NOT_FOUND_USER("U-002"),
+  FORBIDDEN("UNDEF"),
+  NOT_FOUND("UNDEF"),
+  REQUEST_TIMEOUT("UNDEF"),
+  UPDATE_REQUIRED("UNDEF"),
+  MALFORMED_REQUEST("UNDEF"),
+  INTERNAL_SERVER_ERROR("UNDEF"),
+  UNKNOWN("UNDEF");
 
-  final int stateCode;
+  final String stateCode;
 
   const IOErrorCode(this.stateCode);
 
-  static IOErrorCode fromStateCode(int stateCode) {
+  static IOErrorCode fromStateCode(String? stateCode) {
     switch (stateCode) {
-      case 401:
+      case "U-001":
         return UNAUTHORIZED;
-      case 403:
-        return FORBIDDEN;
-      case 404:
-        return NOT_FOUND;
-      case 408:
-        return REQUEST_TIMEOUT;
-      case 422:
-        return MALFORMED_REQUEST;
-      case 426:
-        return UPDATE_REQUIRED;
-      case 500:
-        return INTERNAL_SERVER_ERROR;
+      case "U-002":
+        return NOT_FOUND_USER;
       default:
         return UNKNOWN;
     }

@@ -11,7 +11,7 @@ part 'app_routes.g.dart';
 
 @TypedGoRoute<SplashRoute>(path: SplashRoute.path, name: SplashRoute.name)
 class SplashRoute extends GoRouteData {
-  static const String path = 'splash';
+  static const String path = '/splash';
   static const String name = 'splash';
 
   @override

@@ -14,9 +14,6 @@ abstract interface class TokenProvider {
   static const String keyRefreshToken = 'refresh_token';
   static const String keyProvider = 'provider';
 
-  /// [identifier] 에 해당하는 [AuthenticationInfo] 를 반환합니다.
-  Future<AuthenticationInfo> findUserByIdentifier(Identifier identifier);
-
   /// 현재 로그인한 [AuthenticationInfo] 를 반환합니다.
   Future<AuthenticationInfo?> findMe();
 

@@ -17,11 +17,11 @@ GetIt get _di => GetIt.instance;
 
 Future<GetIt> configureDataDependencies() async {
   _di
+    ..registerSingleton<SharedPreferences>(
+        await SharedPreferences.getInstance())
     ..registerSingleton<HttpClient>(DioHttpClientImpl.create())
     ..registerSingleton<AuthenticationAPI>(
         AuthenticationAPIImpl(_di.get<HttpClient>()))
-    ..registerSingleton<SharedPreferences>(
-        await SharedPreferences.getInstance())
     ..registerSingleton<TokenProvider>(TokenProviderImpl(
       authenticationAPI: _di.get<AuthenticationAPI>(),
       searchPreferences: _di.get<SharedPreferences>(),

@@ -6,7 +6,6 @@
 // @since 2023-12-16
 //
 
-import 'package:core/model/identifier/identifier.dart';
 import 'package:core/model/user/user_model.dart';
 import 'package:core/repository/token_provider/token_provider.dart';
 import 'package:dart_scope_functions/dart_scope_functions.dart';
@@ -55,11 +54,6 @@ final class TokenProviderImpl implements TokenProvider {
     } catch (e) {
       return null;
     }
-  }
-
-  @override
-  Future<AuthenticationInfo> findUserByIdentifier(Identifier identifier) {
-    throw UnimplementedError();
   }
 
   @override
