@@ -43,6 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () => GoRouter.of(context).go(LoginRoute.PATH),
             child: const Text("로그인 페이지로 이동"),
           ),
+          TextButton(
+            onPressed: () => GoRouter.of(context).go(CalendarRoute.PATH),
+            child: const Text("달력 페이지로 이동"),
+          )
         ],
       ),
     ));
