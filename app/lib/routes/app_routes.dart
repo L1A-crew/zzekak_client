@@ -2,6 +2,7 @@ import 'package:core/repository/token_provider/token_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:zzekak/components/calendar.dart';
 import 'package:zzekak/screen/home/v_home.dart';
 import 'package:zzekak/screen/login/v_login.dart';
 import 'package:zzekak/screen/splash/v_splash.dart';
@@ -38,6 +39,16 @@ class LoginRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       LoginScreen(di: GetIt.instance);
+}
+
+@TypedGoRoute<CalendarRoute>(path: CalendarRoute.PATH, name: CalendarRoute.NAME)
+class CalendarRoute extends GoRouteData {
+  static const String PATH = '/calendar';
+  static const String NAME = 'calendar';
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      CalendarScreen(di: GetIt.instance);
 }
 
 final GoRouter router = GoRouter(

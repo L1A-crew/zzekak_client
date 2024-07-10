@@ -10,7 +10,7 @@ extension ColorSchemeOnContextExtension on BuildContext {
 
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
-  primary: Color(0xffff604b),
+  primary: Color(0xff92fd4b),
   onPrimary: Color(0xffFAFAFA),
   primaryContainer: Color(0xFF777777),
   onPrimaryContainer: Color(0xFFFFFBAC),
@@ -22,8 +22,8 @@ const lightColorScheme = ColorScheme(
   onTertiary: Color(0xFFF1F3F6),
   tertiaryContainer: Color(0xFFB4B4B4),
   onTertiaryContainer: Color(0xFF696969),
-  error: Color(0xFFE92121),
-  errorContainer: Color(0xFFFFDAD6),
+  error: Color(0xFFFF1818),
+  errorContainer: Color(0xFFFFE4E4),
   onError: Color(0xFFFFFFFF),
   onErrorContainer: Color(0xFF8D1010),
   background: Color(0xFFE4E7ED),
@@ -41,7 +41,7 @@ const lightColorScheme = ColorScheme(
 
 const darkColorScheme = ColorScheme(
   brightness: Brightness.dark,
-  primary: Color(0xffff604b),
+  primary: Color(0xff92fd4b),
   onPrimary: Color(0xFF515151),
   primaryContainer: Color(0xFFF1F1F1),
   onPrimaryContainer: Color(0xFFFFFBAC),
@@ -53,8 +53,8 @@ const darkColorScheme = ColorScheme(
   onTertiary: Color(0xFF525252),
   tertiaryContainer: Color(0x26FFFFFF),
   onTertiaryContainer: Color(0xFFECECEC),
-  error: Color(0xFFE92121),
-  errorContainer: Color(0xFFFF989F),
+  error: Color(0xFFFF1818),
+  errorContainer: Color(0xFFFFE4E4),
   onError: Color(0xFFAB1010),
   background: Color(0xFF1C1B1B),
   onBackground: Color(0xFFFFFFFF),
