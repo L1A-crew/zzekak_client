@@ -5,10 +5,21 @@ import 'package:go_router/go_router.dart';
 import 'package:zzekak/components/calendar.dart';
 import 'package:zzekak/screen/home/v_home.dart';
 import 'package:zzekak/screen/login/v_login.dart';
+import 'package:zzekak/screen/signed/v_signed.dart';
 import 'package:zzekak/screen/splash/v_splash.dart';
 import 'package:dart_scope_functions/dart_scope_functions.dart';
 
 part 'app_routes.g.dart';
+
+final GoRouter router = GoRouter(
+  routes: $appRoutes,
+  redirect: (final BuildContext context, final GoRouterState state) async {
+    (await GetIt.instance.get<TokenProvider>().findMe()).also((it) {
+      print(it);
+    });
+    return null;
+  },
+);
 
 @TypedGoRoute<SplashRoute>(path: SplashRoute.path, name: SplashRoute.name)
 class SplashRoute extends GoRouteData {
@@ -51,12 +62,12 @@ class CalendarRoute extends GoRouteData {
       CalendarScreen(di: GetIt.instance);
 }
 
-final GoRouter router = GoRouter(
-  routes: $appRoutes,
-  redirect: (final BuildContext context, final GoRouterState state) async {
-    (await GetIt.instance.get<TokenProvider>().findMe()).also((it) {
-      print(it);
-    });
-    return null;
-  },
-);
+@TypedGoRoute<SignedRoute>(path: SignedRoute.PATH, name: SignedRoute.NAME)
+class SignedRoute extends GoRouteData {
+  static const String PATH = '/signed';
+  static const String NAME = 'signed';
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      SignedScreen(di: GetIt.instance);
+}

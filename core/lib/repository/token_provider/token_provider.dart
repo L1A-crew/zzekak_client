@@ -6,7 +6,6 @@
 // @since 2023-12-16
 //
 
-import 'package:core/model/identifier/identifier.dart';
 import 'package:core/model/user/user_model.dart';
 
 abstract interface class TokenProvider {

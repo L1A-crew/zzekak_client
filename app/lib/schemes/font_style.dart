@@ -56,7 +56,7 @@ abstract class ZzekakTextStyle extends TextStyle {
   static TextStyle h2(final BuildContext context,
           [final Color? color, final FontWeight? fontWeight]) =>
       TextStyle(
-        fontWeight: fontWeight ?? FontWeight.w500,
+        fontWeight: fontWeight ?? FontWeight.w400,
         fontSize: 22 * fontFactor(context),
         height: 1.25,
         letterSpacing: -0.41,
@@ -64,10 +64,10 @@ abstract class ZzekakTextStyle extends TextStyle {
       );
 
   // headline 3
-  static TextStyle h3b(final BuildContext context,
+  static TextStyle h3(final BuildContext context,
           [final Color? color, final FontWeight? fontWeight]) =>
       TextStyle(
-        fontWeight: fontWeight ?? FontWeight.w500,
+        fontWeight: fontWeight ?? FontWeight.w400,
         fontSize: 18 * fontFactor(context),
         height: 1.2,
         letterSpacing: -0.41,
@@ -75,10 +75,10 @@ abstract class ZzekakTextStyle extends TextStyle {
       );
 
   // headline 4
-  static TextStyle h4b(final BuildContext context,
-          [final Color? color, final FontWeight? fontWeight]) =>
+  static TextStyle h4(final BuildContext context,
+          {final Color? color, final FontWeight? fontWeight}) =>
       TextStyle(
-        fontWeight: fontWeight ?? FontWeight.w500,
+        fontWeight: fontWeight ?? FontWeight.w400,
         fontSize: 16 * fontFactor(context),
         height: 1.2,
         letterSpacing: -0.41,
@@ -86,10 +86,10 @@ abstract class ZzekakTextStyle extends TextStyle {
       );
 
   // headline 5
-  static TextStyle h5b(final BuildContext context,
+  static TextStyle h5(final BuildContext context,
           [final Color? color, final FontWeight? fontWeight]) =>
       TextStyle(
-        fontWeight: fontWeight ?? FontWeight.w500,
+        fontWeight: fontWeight ?? FontWeight.w400,
         fontSize: 14,
         height: 1.15,
         letterSpacing: -0.41,
@@ -97,10 +97,10 @@ abstract class ZzekakTextStyle extends TextStyle {
       );
 
   // headline 6
-  static TextStyle h6b(final BuildContext context,
+  static TextStyle h6(final BuildContext context,
           [final Color? color, final FontWeight? fontWeight]) =>
       TextStyle(
-        fontWeight: fontWeight ?? FontWeight.w500,
+        fontWeight: fontWeight ?? FontWeight.w400,
         fontSize: 13,
         height: 1.24,
         letterSpacing: -0.41,
@@ -108,10 +108,10 @@ abstract class ZzekakTextStyle extends TextStyle {
       );
 
   // headline 7
-  static TextStyle h7b(final BuildContext context,
+  static TextStyle h7(final BuildContext context,
           [final Color? color, final FontWeight? fontWeight]) =>
       TextStyle(
-        fontWeight: fontWeight ?? FontWeight.w500,
+        fontWeight: fontWeight ?? FontWeight.w400,
         fontSize: 12,
         height: 1.15,
         letterSpacing: -0.41,
@@ -122,7 +122,7 @@ abstract class ZzekakTextStyle extends TextStyle {
   static TextStyle h8(final BuildContext context,
           [final Color? color, final FontWeight? fontWeight]) =>
       TextStyle(
-        fontWeight: fontWeight ?? FontWeight.w500,
+        fontWeight: fontWeight ?? FontWeight.w400,
         fontSize: 10,
         height: 1.24,
         letterSpacing: -0.41,
