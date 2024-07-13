@@ -48,7 +48,7 @@ class _SignedScreenState extends State<SignedScreen> {
                 },
                 text: '약속 생성하기'),
             TextButton(
-              onPressed: () => GoRouter.of(context).go(CalendarRoute.PATH),
+              onPressed: () => CalendarRoute().go(context),
               style: ButtonStyle(
                   overlayColor: MaterialStateColor.resolveWith(
                       (states) => Colors.transparent)),
