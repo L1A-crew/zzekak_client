@@ -3,8 +3,7 @@
 * Copyright (c) . All rights reserved.
 */
 import 'package:flutter/material.dart';
-
-import '../schemes/font_style.dart';
+import 'package:zzekak/schemes/font_style.dart';
 
 ElevatedButton zzekakElevatedButton({
   required BuildContext context,
