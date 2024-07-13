@@ -6,6 +6,8 @@ analyzer:
     - /**/*.mocks.dart
   plugins:
     - custom_lint
+  errors:
+    constant_identifier_names: true
 
 linter:
   rules:

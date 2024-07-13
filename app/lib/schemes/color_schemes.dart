@@ -1,7 +1,7 @@
 /*
- * "senior_client" created by @howyoujini on 2023/11/03  5:53 PM
- * Copyright (c) . All rights reserved.
- */
+* "zzekak_client" created by @howyoujini on 2024/11/03  1:26 PM
+* Copyright (c) . All rights reserved.
+*/
 import 'package:flutter/material.dart';
 
 extension ColorSchemeOnContextExtension on BuildContext {
