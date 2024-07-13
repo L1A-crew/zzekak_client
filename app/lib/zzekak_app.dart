@@ -11,7 +11,7 @@ class ZzekakApp extends StatelessWidget {
   /// ko ver. 째깍
   /// en ver. zzekak
   static const String appName = "째깍";
-  static const String appFontFamily = "NotoSansKR";
+  static const String appFontFamily = "Pretendard";
 
   const ZzekakApp({super.key});
 
