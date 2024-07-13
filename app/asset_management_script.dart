@@ -33,7 +33,7 @@ void main() {
     final enumEntries = files.map((file) {
       final String? path = regex.firstMatch(file.path)?.group(0);
       if (path == null) return '';
-      return '    ${path.toUpperCase().replaceAll('/', '_').replaceAll('.', '_')} (\'${relativePathRegex.firstMatch(file.path)?.group(0)}\')';
+      return '    ${path.toUpperCase().replaceAll('/', '_').replaceAll('.', '_').replaceAll('-', '_')} (\'${relativePathRegex.firstMatch(file.path)?.group(0)}\')';
     }).join(',\n');
 
     final enumString = template(enumEntries);
@@ -51,6 +51,8 @@ void main() {
 
 // 모든 파일을 재귀적으로 수집하는 메소드
 void collectFilesRecursively(Directory dir, List<File> fileList) {
+  // dir name is == fonts. ignore it.
+  if(dir.path.contains('fonts')) return;
   final List<FileSystemEntity> entities = dir.listSync();
   for (final FileSystemEntity entity in entities) {
     if (entity is Directory) {
