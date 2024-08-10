@@ -13,18 +13,16 @@ import 'package:data/repository/user_repository/user_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-GetIt get _di => GetIt.instance;
-
-Future<GetIt> configureDataDependencies() async {
-  _di
+Future<GetIt> configureDataDependencies({required final GetIt di}) async {
+  di
     ..registerSingleton<SharedPreferences>(
         await SharedPreferences.getInstance())
     ..registerSingleton<HttpClient>(DioHttpClientImpl.create())
     ..registerSingleton<AuthenticationAPI>(
-        AuthenticationAPIImpl(_di.get<HttpClient>()))
+        AuthenticationAPIImpl(di.get<HttpClient>()))
     ..registerSingleton<TokenProvider>(TokenProviderImpl(
-      authenticationAPI: _di.get<AuthenticationAPI>(),
-      searchPreferences: _di.get<SharedPreferences>(),
+      authenticationAPI: di.get<AuthenticationAPI>(),
+      searchPreferences: di.get<SharedPreferences>(),
     ));
-  return _di;
+  return di;
 }

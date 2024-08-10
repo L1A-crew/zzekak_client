@@ -1,40 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:zzekak/gen/asset_paths.dart';
+import 'package:zzekak/module/initialization/initialization_module.dart';
+import 'package:zzekak/module/initialization/state_n_event.dart';
+import 'package:zzekak/routes/app_routes.dart';
 import 'package:zzekak/schemes/color_schemes.dart';
-import 'package:zzekak/screen/splash/vm_splash.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  @protected
+  final InitializationModule module;
+
+  const SplashScreen({
+    super.key,
+    required this.module,
+  });
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final SplashViewModel _vm = SplashViewModel();
-
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      final String path = await _vm.initLogic();
-      if (mounted) {
-        context.go(path);
-      }
-    });
+    widget.module.add(const WhenInitialized());
   }
 
+  // @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: context.color.primary,
-        body: Center(
+      backgroundColor: context.color.primary,
+      body: BlocConsumer(
+        bloc: widget.module,
+        listener: (
+          final BuildContext context,
+          final AppInitializationState state,
+        ) {
+          switch(state){
+            case Uninitialized():
+              return;
+            case Initialized():
+              const HomeRoute().go(context);
+          }
+        },
+        builder: (
+          final BuildContext context,
+          final AppInitializationState state,
+        ) =>
+            Center(
           child: SvgPicture.asset(
             AssetPaths.TEXT_LOGO_SVG.path,
             width: 80,
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

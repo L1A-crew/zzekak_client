@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
 import 'package:zzekak/components/elevated_btn.dart';
 import 'package:zzekak/routes/app_routes.dart';
 import 'package:zzekak/schemes/color_schemes.dart';
