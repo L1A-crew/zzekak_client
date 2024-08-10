@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
-import 'package:zzekak/di/app_di_config.dart';
+import 'package:zzekak/di/di_config.dart';
 import 'package:zzekak/zzekak_app.dart';
 
 late final GetIt getIt;

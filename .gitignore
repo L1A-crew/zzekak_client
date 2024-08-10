@@ -14,8 +14,6 @@ pubspec_overrides.yaml
 **.flutter-plugins-dependencies
 /build/
 /.idea
-
 **.g.dart
-
 .fvm/
 .fvmrc
