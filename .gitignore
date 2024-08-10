@@ -15,3 +15,5 @@ pubspec_overrides.yaml
 /build/
 /.idea
 **.g.dart
+.fvm/
+.fvmrc
