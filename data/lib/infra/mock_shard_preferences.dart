@@ -9,7 +9,7 @@
 /// DI PoC 를 위해 [SharedPreferences] 를 모킹합니다.
 final class MockSharedPreferences {
   static Future<MockSharedPreferences> create() async {
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     final singleton = MockSharedPreferences();
     return singleton;
   }

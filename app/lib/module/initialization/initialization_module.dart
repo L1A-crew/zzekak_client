@@ -45,6 +45,6 @@ final class InitializationModule
     final Emitter<AppInitializationState> emitter,
   ) async {
     await Future.delayed(const Duration(seconds: 1));
-    emitter(Initialized());
+    emitter(const Initialized());
   }
 }

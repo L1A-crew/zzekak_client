@@ -35,10 +35,10 @@ class _SignedScreenState extends State<SignedScreen> {
             const Padding(padding: EdgeInsets.all(20.0)),
             zzekakElevatedButton(
                 context: context,
-                onPressed: () => GoRouter.of(context).go(CalendarRoute.PATH),
+                onPressed: () => const AppointmentSetupRoute().go(context),
                 text: '약속 생성하기'),
             TextButton(
-              onPressed: () => CalendarRoute().go(context),
+              onPressed: () => const HomeRoute().go(context),
               style: ButtonStyle(
                   overlayColor: MaterialStateColor.resolveWith(
                       (states) => Colors.transparent)),
