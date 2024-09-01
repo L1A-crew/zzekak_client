@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:zzekak/components/calendar.dart';
 import 'package:zzekak/module/initialization/initialization_module.dart';
 import 'package:zzekak/module/initialization/state_n_event.dart';
+import 'package:zzekak/screen/appointment_setup/v_appointment_setup.dart';
 import 'package:zzekak/screen/home/v_home.dart';
 import 'package:zzekak/screen/login/v_login.dart';
 import 'package:zzekak/screen/signed/v_signed.dart';
@@ -56,9 +57,25 @@ class CalendarRoute extends GoRouteData {
   static const String PATH = '/calendar';
   static const String NAME = 'calendar';
 
+  const CalendarRoute();
+
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       CalendarScreen(di: GetIt.instance);
+}
+
+/// 약속 생성 화면
+@TypedGoRoute<AppointmentSetupRoute>(
+    path: AppointmentSetupRoute.PATH, name: AppointmentSetupRoute.NAME)
+class AppointmentSetupRoute extends GoRouteData {
+  static const String PATH = '/appointment-setup';
+  static const String NAME = 'appointment-setup';
+
+  const AppointmentSetupRoute();
+
+  @override
+  Widget build(final BuildContext context, final GoRouterState state) =>
+      AppointmentSetupView(di: GetIt.instance);
 }
 
 @TypedGoRoute<SignedRoute>(path: SignedRoute.PATH, name: SignedRoute.NAME)

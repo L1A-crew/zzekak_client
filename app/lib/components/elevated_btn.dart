@@ -3,6 +3,7 @@
 * Copyright (c) . All rights reserved.
 */
 import 'package:flutter/material.dart';
+import 'package:zzekak/schemes/color_schemes.dart';
 import 'package:zzekak/schemes/font_style.dart';
 
 ElevatedButton zzekakElevatedButton({
@@ -21,7 +22,8 @@ ElevatedButton zzekakElevatedButton({
     onPressed: onPressed,
     style: ElevatedButton.styleFrom(
       foregroundColor: foregroundColor,
-      backgroundColor: backgroundColor ?? Theme.of(context).colorScheme.primary,
+      backgroundColor: backgroundColor ?? context.color.primary,
+      splashFactory: NoSplash.splashFactory,
       textStyle:
           textStyle ?? ZzekakTextStyle.h4(context, fontWeight: FontWeight.w600),
       padding: padding,
