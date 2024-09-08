@@ -20,6 +20,8 @@ dependencies:
       url: https://github.com/WongueShin/flutter_asset_builder
   bloc: 8.1.4
   flutter_bloc: 8.1.6
+  firebase_core: 3.4.0
+  firebase_messaging: 15.1.0
   equatable: 2.0.5
   flutter_svg: 2.0.9
   get_it: 7.6.7

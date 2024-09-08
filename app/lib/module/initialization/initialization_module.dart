@@ -7,6 +7,8 @@
 //
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:zzekak/module/initialization/state_n_event.dart';
 
@@ -36,7 +38,8 @@ final class InitializationModule
   ) async {
     // 초기화 이후 다시 초기화 되는 경우를 방지
     if (state is Initialized) return;
-    await Future.delayed(const Duration(seconds: 1));
+    await Firebase.initializeApp();
+    await FirebaseMessaging.instance.getToken();
     emitter(const Initialized());
   }
 
