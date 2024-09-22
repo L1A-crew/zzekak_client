@@ -11,6 +11,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:zzekak/module/initialization/state_n_event.dart';
+import 'package:zzekak/firebase_options.dart';
 
 final class InitializationModule
     extends Bloc<AppInitializationEvent, AppInitializationState> {
@@ -38,8 +39,12 @@ final class InitializationModule
   ) async {
     // 초기화 이후 다시 초기화 되는 경우를 방지
     if (state is Initialized) return;
-    await Firebase.initializeApp();
-    await FirebaseMessaging.instance.getToken();
+    await Firebase.initializeApp(
+      name: "Zzekak",
+      options: DefaultFirebaseOptions.currentPlatform
+    );
+    // apns 설정 필요
+    // await FirebaseMessaging.instance.getToken();
     emitter(const Initialized());
   }
 

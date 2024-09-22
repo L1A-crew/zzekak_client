@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "257454421788",
+    "project_id": "zzekakproject",
+    "storage_bucket": "zzekakproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257454421788:android:48af4cfe2b4d86b317ecd9",
+        "android_client_info": {
+          "package_name": "com.zzekak.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_6Y4VPZK6LFeYnJuFYh4CkxI1Bac33aM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
