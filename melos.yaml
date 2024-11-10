@@ -7,26 +7,28 @@ packages:
   - util
   - zzekak_custom_lint
 
+sdkPath: .fvm/flutter_sdk
 
 scripts:
+  setup:
+    run: fvm use 3.24.3
+
   a:
-    run: cd ./app && dart run custom_lint; first_command_status=$?; melos exec flutter analyze; second_command_status=$?; (exit $(( first_command_status || second_command_status )))
-
-
+    run: cd ./app && fvm exec dart run custom_lint; first_command_status=$?; melos exec fvm exec flutter analyze; second_command_status=$?; (exit $(( first_command_status || second_command_status )))
     description: 모든 코드의 분석을 실행합니다.
 
   i:
-    exec: flutter pub get
+    exec: fvm exec dart pub get
     description: 모든 패키지를 설치합니다.
 
   codegen:
-    run: dart run ./app/asset_management_script.dart && melos exec flutter pub run build_runner build --delete-conflicting-outputs
+    run: fvm exec dart run ./app/asset_management_script.dart && melos exec fvm exec dart run build_runner build --delete-conflicting-outputs
     description: 모든 코드를 생성합니다.
 
   update:
-    exec: flutter pub upgrade
+    exec: fvm exec flutter pub upgrade
     description: 모든 패키지를 업데이트합니다.
 
   outdated:
-    exec: flutter pub outdated
+    exec: fvm exec flutter pub outdated
     description: 모든 패키지의 업데이트 가능 여부를 확인합니다.

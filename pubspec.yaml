@@ -1,6 +1,6 @@
 name: zzekak_client
 environment:
-  sdk: 3.3.2
+  sdk: 3.5.3
 
 dev_dependencies:
   melos: 3.4.0
