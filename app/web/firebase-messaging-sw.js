@@ -1,14 +1,14 @@
 importScripts("https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js");
 importScripts("https://www.gstatic.com/firebasejs/7.5.0/firebase-messaging.js");
 firebase.initializeApp({
-    apiKey: "API_KEY",
-    authDomain: "AUTH_DOMAIN",
+    apiKey: "AIzaSyCfDWsnyIbnWOb_qFZnS6O-6JeSS02FLPw",
+    appId: "1:257454421788:web:2e20146146beec2717ecd9",
+    messagingSenderId: "257454421788",
+    projectId: "zzekakproject",
+    authDomain: "zzekakproject.firebaseapp.com",
+    storageBucket: "zzekakproject.appspot.com",
+    measurementId: "G-LQFW9MPZPR",
     databaseURL: "DATABASE_URL",
-    projectId: "PROJECT_ID",
-    storageBucket: "STORAGE_BUCKET",
-    messagingSenderId: "MESSAGING_SENDER_ID",
-    appId: "APP_ID",
-    measurementId: "MEASUREMENT_ID"
 });
 const messaging = firebase.messaging();
 messaging.setBackgroundMessageHandler(function (payload) {

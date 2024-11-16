@@ -14,6 +14,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:zzekak/module/initialization/state_n_event.dart';
 import 'package:zzekak/firebase_options.dart';
 
@@ -46,15 +47,20 @@ final class InitializationModule
   ) async {
     // 초기화 이후 다시 초기화 되는 경우를 방지
     if (state is Initialized) return;
-    (await Firebase.initializeApp(
-            options: DefaultFirebaseOptions.currentPlatform))
-        .let((_) => getFCMToken())
-        .also((final Future<String?> couldBeToken) async {
-      if (await couldBeToken is String) {
-        Logger().i("FCM token acquired ${await couldBeToken}");
-
-      }
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
+    FirebaseMessaging.onMessage.listen((final RemoteMessage message) {
+      Logger().i("FCM message received ${message.data}");
     });
+
+    if (await Permission.notification.isGranted) {
+      getFCMToken.also((final Future<String?> Function() couldBeToken) async {
+        final res = await couldBeToken();
+        if (res is String) {
+          Logger().i("FCM token acquired $res");
+        }
+      });
+    }
 
     emitter(const Initialized());
   }
