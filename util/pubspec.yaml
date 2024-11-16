@@ -12,6 +12,7 @@ dependencies:
   core:
     path: ../core
   get_it: 7.6.7
+  logger: 2.4.0
 
 dev_dependencies:
   lints: 3.0.0

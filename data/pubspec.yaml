@@ -14,6 +14,7 @@ dependencies:
   dio: 5.4.0
   equatable: 2.0.5
   get_it: 7.6.7
+  logger: 2.4.0
   json_annotation: 4.8.1
   json_serializable: 6.7.1
   shared_preferences: 2.2.3
