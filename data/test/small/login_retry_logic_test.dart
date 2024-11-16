@@ -14,9 +14,8 @@ import 'package:data/api/auth_api/response/join_or_login_response.dart';
 import 'package:data/api/common_dto/token_content_dto.dart';
 import 'package:data/io/http_client.dart';
 import 'package:faker/faker.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test/expect.dart';
-import 'package:test/scaffolding.dart';
 
 import '../@mock/http_client/mock_httpcient_generator.mocks.dart';
 

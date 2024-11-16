@@ -4,7 +4,7 @@ publish_to: none
 version: 1.0.0+1
 
 environment:
-  sdk: 3.3.2
+  sdk: 3.5.3
 
 dependencies:
   core:
@@ -20,6 +20,8 @@ dependencies:
       url: https://github.com/WongueShin/flutter_asset_builder
   bloc: 8.1.4
   flutter_bloc: 8.1.6
+  firebase_core: 3.4.0
+  firebase_messaging: 15.1.0
   equatable: 2.0.5
   flutter_svg: 2.0.9
   get_it: 7.6.7
@@ -30,7 +32,7 @@ dependencies:
 
 dev_dependencies:
   analyzer: 6.0.0
-  build_runner: 2.4.7
+  build_runner: 2.4.13
   custom_lint: null
   flutter_launcher_icons: 0.13.1
   flutter_lints: 3.0.0
