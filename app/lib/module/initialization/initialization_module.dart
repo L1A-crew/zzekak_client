@@ -7,16 +7,23 @@
 //
 
 import 'package:bloc/bloc.dart';
+import 'package:core/repository/token_provider/token_provider.dart';
+import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get_it/get_it.dart';
+import 'package:logger/logger.dart';
 import 'package:zzekak/module/initialization/state_n_event.dart';
 import 'package:zzekak/firebase_options.dart';
 
 final class InitializationModule
     extends Bloc<AppInitializationEvent, AppInitializationState> {
+  final TokenProvider _tokenProvider;
+
   @visibleForTesting
-  InitializationModule(super.initialState) {
+  InitializationModule(super.initialState)
+      : _tokenProvider = GetIt.instance.get<TokenProvider>() {
     on<AppInitializationEvent>((
       final AppInitializationEvent event,
       final Emitter<AppInitializationState> emitter,
@@ -39,12 +46,16 @@ final class InitializationModule
   ) async {
     // 초기화 이후 다시 초기화 되는 경우를 방지
     if (state is Initialized) return;
-    await Firebase.initializeApp(
-      name: "Zzekak",
-      options: DefaultFirebaseOptions.currentPlatform
-    );
-    // apns 설정 필요
-    // await FirebaseMessaging.instance.getToken();
+    (await Firebase.initializeApp(
+            options: DefaultFirebaseOptions.currentPlatform))
+        .let((_) => getFCMToken())
+        .also((final Future<String?> couldBeToken) async {
+      if (await couldBeToken is String) {
+        Logger().i("FCM token acquired ${await couldBeToken}");
+
+      }
+    });
+
     emitter(const Initialized());
   }
 
@@ -54,5 +65,16 @@ final class InitializationModule
   ) async {
     await Future.delayed(const Duration(seconds: 1));
     emitter(const Initialized());
+  }
+}
+
+Future<String?> getFCMToken() async {
+  try {
+    return await FirebaseMessaging.instance.getToken(
+        vapidKey:
+            "BG9suwndw3o84ga9UK3WUOPJBEp0wY10EKaRzDeNLFGYRY36AlmGud81KwFJg_-S7ZRiPOXiJp72gGs_9n7Cxr0");
+  } catch (e, s) {
+    Logger().e("FCM token acquire failed $e\n $s");
+    return null;
   }
 }
