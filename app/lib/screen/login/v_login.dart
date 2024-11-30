@@ -6,7 +6,10 @@
 // @since 2024-04-13
 //
 
+import 'dart:io';
+
 import 'package:core/model/user/user_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -89,10 +92,13 @@ class LoginScreen extends StatelessWidget {
                     child: SvgPicture.asset(AssetPaths.KAKAO_LOGIN_SVG.path),
                   ),
                   const Padding(padding: EdgeInsets.all(5.0)),
-                  GestureDetector(
-                    onTap: () =>
-                        _viewModel.whenLoginBtnTapped(AppleLoginEvent()),
-                    child: SvgPicture.asset(AssetPaths.APPLE_LOGIN_SVG.path),
+                  Visibility(
+                    visible: !kIsWeb && Platform.isIOS,
+                    child: GestureDetector(
+                      onTap: () =>
+                          _viewModel.whenLoginBtnTapped(AppleLoginEvent()),
+                      child: SvgPicture.asset(AssetPaths.APPLE_LOGIN_SVG.path),
+                    ),
                   ),
                   const Padding(padding: EdgeInsets.all(12.0)),
                 ],
