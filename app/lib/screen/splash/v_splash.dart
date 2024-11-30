@@ -1,3 +1,4 @@
+import 'package:core/model/user/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zzekak/gen/asset_paths.dart';
@@ -38,10 +39,12 @@ class _SplashScreenState extends State<SplashScreen> {
           final BuildContext context,
           final AppInitializationState state,
         ) {
-          switch(state){
+          switch (state) {
             case Uninitialized():
               return;
-            case Initialized():
+            case Initialized(authInfo: null):
+              const LoginRoute().go(context);
+            case Initialized(authInfo: final AuthenticationInfo authInfo):
               const HomeRoute().go(context);
           }
         },

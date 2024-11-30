@@ -47,6 +47,8 @@ class LoginRoute extends GoRouteData {
   static const String PATH = '/login';
   static const String NAME = 'login';
 
+  const LoginRoute();
+
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       LoginScreen(di: GetIt.instance);
