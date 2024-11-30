@@ -7,7 +7,6 @@
 //
 
 import 'package:core/model/user/user_model.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -31,12 +30,22 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: BlocListener<LoginViewModel, AuthenticationInfo?>(
+        child: BlocListener<LoginViewModel, LoginViewState>(
           bloc: _viewModel,
-          listener:
-              (final BuildContext context, final AuthenticationInfo? state) {
-            if (state != null) {
-              const HomeRoute().go(context);
+          listener: (final BuildContext context, final LoginViewState state) {
+            switch (state) {
+              case LoginViewState(
+                  authenticationInfo: AuthenticationInfo(),
+                  isFirstLogin: true
+                ):
+                const SignedRoute().go(context);
+            }
+            switch (state) {
+              case LoginViewState(
+                  authenticationInfo: AuthenticationInfo(),
+                  isFirstLogin: false
+                ):
+                const HomeRoute().go(context);
             }
           },
           child: Column(
@@ -51,8 +60,11 @@ class LoginScreen extends StatelessWidget {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
-                        child: SvgPicture.asset(AssetPaths.TEXT_LOGO_SVG.path,
-                            color: Colors.black),
+                        child: SvgPicture.asset(
+                          AssetPaths.TEXT_LOGO_SVG.path,
+                          colorFilter: const ColorFilter.mode(
+                              Colors.black, BlendMode.srcIn),
+                        ),
                       ),
                     )),
                 Padding(
@@ -72,24 +84,14 @@ class LoginScreen extends StatelessWidget {
               Column(
                 children: [
                   GestureDetector(
-                    onTap: () async {
-                      final res = await _viewModel
-                          .whenLoginBtnTapped(KakaoLoginEvent());
-                      if (kDebugMode) {
-                        print(res);
-                      }
-                    },
+                    onTap: () =>
+                        _viewModel.whenLoginBtnTapped(KakaoLoginEvent()),
                     child: SvgPicture.asset(AssetPaths.KAKAO_LOGIN_SVG.path),
                   ),
                   const Padding(padding: EdgeInsets.all(5.0)),
                   GestureDetector(
-                    onTap: () async {
-                      final res = await _viewModel
-                          .whenLoginBtnTapped(AppleLoginEvent());
-                      if (kDebugMode) {
-                        print(res);
-                      }
-                    },
+                    onTap: () =>
+                        _viewModel.whenLoginBtnTapped(AppleLoginEvent()),
                     child: SvgPicture.asset(AssetPaths.APPLE_LOGIN_SVG.path),
                   ),
                   const Padding(padding: EdgeInsets.all(12.0)),

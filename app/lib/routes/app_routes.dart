@@ -85,6 +85,8 @@ class SignedRoute extends GoRouteData {
   static const String PATH = '/signed';
   static const String NAME = 'signed';
 
+  const SignedRoute();
+
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       SignedScreen(di: GetIt.instance);

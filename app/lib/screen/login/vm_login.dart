@@ -13,11 +13,36 @@ import 'package:core/repository/token_provider/token_provider.dart';
 import 'package:data/api/auth_api/auth_api.dart';
 import 'package:data/api/auth_api/request/join_or_login_request.dart';
 import 'package:data/api/auth_api/response/join_or_login_response.dart';
+import 'package:equatable/equatable.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
 import 'package:zzekak/mixin/login.dart';
 
-final class LoginViewModel extends Cubit<AuthenticationInfo?>
+final class LoginViewState extends Equatable {
+  final AuthenticationInfo? authenticationInfo;
+  final bool? isFirstLogin;
+
+  const LoginViewState({
+    required this.authenticationInfo,
+    required this.isFirstLogin,
+  });
+
+  @override
+  List<Object?> get props => [
+        authenticationInfo,
+        isFirstLogin,
+      ];
+
+  @override
+  bool get stringify => true;
+
+  factory LoginViewState.empty() => const LoginViewState(
+        authenticationInfo: null,
+        isFirstLogin: null,
+      );
+}
+
+final class LoginViewModel extends Cubit<LoginViewState>
     with CertificationUsecase {
   final TokenProvider _tokenProvider;
   final AuthenticationAPI _authenticationAPI;
@@ -25,10 +50,9 @@ final class LoginViewModel extends Cubit<AuthenticationInfo?>
   LoginViewModel({required final GetIt getIt})
       : _tokenProvider = getIt.get<TokenProvider>(),
         _authenticationAPI = getIt.get<AuthenticationAPI>(),
-        super(null);
+        super(LoginViewState.empty());
 
-  Future<({AuthenticationInfo authenticationInfo, bool isFirstLogin})>
-      whenLoginBtnTapped(final SocialLoginEvent event) async {
+  Future<void> whenLoginBtnTapped(final SocialLoginEvent event) async {
     final ThirdPartyAuthToken token = await socialLogin(event: event);
 
     final JoinOrLoginResponse res =
@@ -49,9 +73,11 @@ final class LoginViewModel extends Cubit<AuthenticationInfo?>
 
     await _tokenProvider.save(authInfo);
 
-    return (
+    emit(LoginViewState(
       authenticationInfo: authInfo,
       isFirstLogin: res.isFirstLogin,
-    );
+    ));
+
+    return;
   }
 }
