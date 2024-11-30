@@ -31,26 +31,12 @@ final class TokenProviderImpl implements TokenProvider {
         _sharedPreferences = searchPreferences;
 
   @override
-  Future<AuthenticationInfo?> findMe({
-    String? tokenInput,
-    String? providerInput,
-  }) async {
+  Future<AuthenticationInfo?> findMe() async {
     try {
-      final String token = tokenInput ??
-          _sharedPreferences.getString(TokenProvider.keyAccessToken)!;
-      final String provider = providerInput ??
-          _sharedPreferences.getString(TokenProvider.keyProvider)!;
-
-      return (await _authenticationAPI.joinOrLogin(
-        JoinOrLoginRequest(
-          token: token,
-          provider: AuthProviderExt.fromString(provider),
-        ),
-      ))
-          .let((final JoinOrLoginResponse it) => AuthenticationInfo(
-                it.tokenContent.accessToken,
-                it.tokenContent.refreshToken,
-              ));
+      return AuthenticationInfo(
+        await _sharedPreferences.getString(TokenProvider.keyAccessToken)!,
+        await _sharedPreferences.getString(TokenProvider.keyRefreshToken)!,
+      );
     } catch (e) {
       return null;
     }
