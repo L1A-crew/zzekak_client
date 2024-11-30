@@ -62,6 +62,8 @@ final class InitializationModule
       });
     }
 
+    await Future.delayed(const Duration(milliseconds: 500));
+
     emitter(Initialized(
       authInfo: await _tokenProvider.findMe(),
     ));
