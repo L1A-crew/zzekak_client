@@ -53,7 +53,11 @@ class _HomeScreenState extends State<HomeScreen> {
           TextButton(
             onPressed: () => const AppointmentSetupRoute().go(context),
             child: const Text("약속생성 하기"),
-          )
+          ),
+          TextButton(
+            onPressed: () => GoRouter.of(context).go(AgreeOfTermsRoute.PATH),
+            child: const Text("약관동의 페이지로 이동"),
+          ),
         ],
       ),
     ));
