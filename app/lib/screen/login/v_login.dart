@@ -80,8 +80,9 @@ class LoginScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Text("효율적인 시간 관리,\n째깍과 함께 시작해보세요!",
-                    textAlign: TextAlign.center),
+                Text("효율적인 시간 관리,\n째깍과 함께 시작해보세요!",
+                    textAlign: TextAlign.center,
+                    style: ZzekakTextStyle.h4(context)),
               ]),
               Expanded(child: Container()),
               Column(

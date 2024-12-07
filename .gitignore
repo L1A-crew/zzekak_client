@@ -18,4 +18,6 @@ pubspec_overrides.yaml
 .fvm/
 .fvmrc
 
+.vscode
+
 app/ios/Podfile.lock
