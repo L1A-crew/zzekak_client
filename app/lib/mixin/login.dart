@@ -10,6 +10,7 @@ import 'package:core/model/auth_token/auth_token.dart';
 import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as kakao_sdk;
+import 'package:logger/logger.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as apple_sdk;
 
 sealed class SocialLoginEvent {}
@@ -20,7 +21,8 @@ final class AppleLoginEvent extends SocialLoginEvent {}
 
 mixin CertificationUsecase {
   @protected
-  Future<ThirdPartyAuthToken> socialLogin({required final SocialLoginEvent event}) async {
+  Future<ThirdPartyAuthToken> socialLogin(
+      {required final SocialLoginEvent event}) async {
     switch (event) {
       case KakaoLoginEvent():
         return _loginWithKakao(event);
@@ -54,6 +56,7 @@ mixin CertificationUsecase {
           .let((final apple_sdk.AuthorizationCredentialAppleID it) =>
               AppleAuthToken(oAuthToken: it.identityToken ?? ''));
     } else {
+      Logger().e('Apple Login is not available');
       throw Exception('Apple Login is not available');
     }
   }

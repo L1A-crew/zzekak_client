@@ -6,6 +6,7 @@
 // @since 2024-08-10
 //
 
+import 'package:core/model/user/user_model.dart';
 import 'package:equatable/equatable.dart';
 
 /// Zzekak App의 초기화 여부를 나타내는 상태
@@ -26,12 +27,14 @@ final class Uninitialized extends AppInitializationState {
 
 /// 초기화가 완료된 상태
 final class Initialized extends AppInitializationState {
-  // 추후 initialization 이 된 시점에 들고 있어야 하는 데이터가 있다면 여기 추가하면 됩니다.
+  final AuthenticationInfo? authInfo;
 
-  const Initialized();
+  const Initialized({
+    required this.authInfo,
+  });
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [authInfo];
 
   @override
   bool get stringify => true;

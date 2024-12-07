@@ -26,6 +26,11 @@ final class AuthenticationInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     super.onRequest(options, handler);
+    String? accessToken = _sharedPreferences.getString(ACCESSTOKEN_KEY);
+    if (accessToken == null) {
+      return;
+    }
+
     if (options.headers.containsKey(AUHORIZATION)) {
       options.headers.remove(AUHORIZATION);
     }
@@ -64,7 +69,11 @@ final class DioHttpClientImpl implements HttpClient {
 
   factory DioHttpClientImpl.create() {
     return DioHttpClientImpl(
-        Dio(BaseOptions())
+        Dio(BaseOptions(
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        ))
           ..interceptors.add(AuthenticationInterceptor(
               GetIt.instance.get<SharedPreferences>())),
         'http://chunbae-home.iptime.org:6070');

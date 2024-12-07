@@ -8,6 +8,7 @@ import 'package:zzekak/module/initialization/state_n_event.dart';
 import 'package:zzekak/screen/appointment_setup/v_appointment_setup.dart';
 import 'package:zzekak/screen/home/v_home.dart';
 import 'package:zzekak/screen/login/v_login.dart';
+import 'package:zzekak/screen/sign_in/agree_of_terms/agree_of_terms_screen.dart';
 import 'package:zzekak/screen/signed/v_signed.dart';
 import 'package:zzekak/screen/splash/v_splash.dart';
 
@@ -47,6 +48,8 @@ class LoginRoute extends GoRouteData {
   static const String PATH = '/login';
   static const String NAME = 'login';
 
+  const LoginRoute();
+
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       LoginScreen(di: GetIt.instance);
@@ -83,9 +86,24 @@ class SignedRoute extends GoRouteData {
   static const String PATH = '/signed';
   static const String NAME = 'signed';
 
+  const SignedRoute();
+
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       SignedScreen(di: GetIt.instance);
+}
+
+@TypedGoRoute<AgreeOfTermsRoute>(
+    path: AgreeOfTermsRoute.PATH, name: AgreeOfTermsRoute.NAME)
+final class AgreeOfTermsRoute extends GoRouteData {
+  static const String PATH = '/agree-of-terms';
+  static const String NAME = 'agree-of-terms';
+
+  const AgreeOfTermsRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      AgreeOfTermsScreen();
 }
 
 FutureOr<String?> _initializationRedirectionLogic(
