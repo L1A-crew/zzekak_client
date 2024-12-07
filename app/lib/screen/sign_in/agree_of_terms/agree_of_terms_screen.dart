@@ -12,6 +12,8 @@ import 'package:zzekak/schemes/color_schemes.dart';
 import 'package:zzekak/schemes/font_style.dart';
 import 'package:zzekak/screen/sign_in/agree_of_terms/view_model/state.dart';
 import 'package:zzekak/screen/sign_in/agree_of_terms/view_model/view_model_agree_of_terms.dart';
+import 'package:zzekak/screen/sign_in/agree_of_terms/widget/agree_all_terms.dart';
+import 'package:zzekak/screen/sign_in/agree_of_terms/widget/terms_indicator.dart';
 
 class AgreeOfTermsScreen extends StatefulWidget {
   final ViewModelOfAgreeOfTerms viewModel =
@@ -59,7 +61,7 @@ class _AgreeOfTermsScreenState extends State<AgreeOfTermsScreen> {
                     onTap: (value) {
                       widget.viewModel.changeIsOverFourteen(value);
                     },
-                    onDetailTextBtnTap: () {},
+                    fullTermsLink: 'https://www.naver.com',
                   ),
                   TermsIndicator(
                     title: '[필수] 서비스 이용 약관 동의',
@@ -67,7 +69,7 @@ class _AgreeOfTermsScreenState extends State<AgreeOfTermsScreen> {
                     onTap: (value) {
                       widget.viewModel.changeIsAgreeOfServiceTerms(value);
                     },
-                    onDetailTextBtnTap: () {},
+                    fullTermsLink: 'https://www.naver.com',
                   ),
                   TermsIndicator(
                     title: '[필수] 개인정보 처리방침 동의',
@@ -75,7 +77,7 @@ class _AgreeOfTermsScreenState extends State<AgreeOfTermsScreen> {
                     onTap: (value) {
                       widget.viewModel.changeIsAgreeOfPrivacyPolicy(value);
                     },
-                    onDetailTextBtnTap: () {},
+                    fullTermsLink: 'https://www.naver.com',
                   ),
                   TermsIndicator(
                     title: '[필수] 마케팅 정보 수신 동의',
@@ -83,7 +85,7 @@ class _AgreeOfTermsScreenState extends State<AgreeOfTermsScreen> {
                     onTap: (value) {
                       widget.viewModel.changeMarketingAgreement(value);
                     },
-                    onDetailTextBtnTap: () {},
+                    fullTermsLink: 'https://www.naver.com',
                   ),
                   TermsIndicator(
                     title: '[선택] 위치정보 이용약관 동의',
@@ -92,7 +94,7 @@ class _AgreeOfTermsScreenState extends State<AgreeOfTermsScreen> {
                     onTap: (value) {
                       widget.viewModel.changeIsLocationAgreement(value);
                     },
-                    onDetailTextBtnTap: () {},
+                    fullTermsLink: 'https://www.naver.com',
                   ),
                   TermsIndicator(
                     title: '[선택] 푸시 알림 수신 동의',
@@ -101,7 +103,7 @@ class _AgreeOfTermsScreenState extends State<AgreeOfTermsScreen> {
                     onTap: (value) {
                       widget.viewModel.changeIsPushAgreement(value);
                     },
-                    onDetailTextBtnTap: () {},
+                    fullTermsLink: 'https://www.naver.com',
                   ),
 
                   const Expanded(child: SizedBox.shrink()),
@@ -133,118 +135,6 @@ class _AgreeOfTermsScreenState extends State<AgreeOfTermsScreen> {
           ),
         );
       },
-    );
-  }
-}
-
-class AgreeAllTerms extends StatelessWidget {
-  final bool isRequiredAgreeOfTerms;
-  final void Function(bool value) onTap;
-
-  const AgreeAllTerms({
-    required this.isRequiredAgreeOfTerms,
-    required this.onTap,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
-      child: InkWell(
-        hoverColor: context.color.tertiaryContainer.withOpacity(0.03),
-        onTap: () => onTap(!isRequiredAgreeOfTerms),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0),
-          child: Row(
-            children: [
-              Checkbox(
-                value: isRequiredAgreeOfTerms,
-                onChanged: (value) => onTap(value ?? false),
-              ),
-              Text(
-                "모두 동의합니다.",
-                style: ZzekakTextStyle.h4(
-                  context,
-                  color: context.color.onSurface,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-final class TermsIndicator extends StatelessWidget {
-  final String title;
-  final bool shouldShowDetailTextBtn;
-  final String detailText;
-  final bool isAgreed;
-  final void Function(bool isAgreed) onTap;
-  final void Function() onDetailTextBtnTap;
-
-  const TermsIndicator({
-    super.key,
-    required this.title,
-    this.shouldShowDetailTextBtn = true,
-    this.detailText = '',
-    this.isAgreed = false,
-    required this.onTap,
-    required this.onDetailTextBtnTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2.0),
-      child: InkWell(
-        hoverColor: context.color.tertiaryContainer.withOpacity(0.03),
-        onTap: () => onTap(!isAgreed),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
-          child: Row(
-            children: [
-              // TODO: 자체 디자인 체크박스로 변경
-              Checkbox(
-                value: isAgreed,
-                onChanged: (value) => onTap(value ?? false),
-              ),
-              Expanded(
-                child: RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: title,
-                        style: ZzekakTextStyle.h5(
-                            context, context.color.onSurface, FontWeight.w600),
-                      ),
-                      if (detailText.isNotEmpty)
-                        TextSpan(
-                            text: '\n$detailText',
-                            style: ZzekakTextStyle.h6(context,
-                                    context.color.primary, FontWeight.w900)
-                                .copyWith(height: 1.5)),
-                    ],
-                  ),
-                ),
-              ),
-              // TODO: 문서 링크 달기
-              if (shouldShowDetailTextBtn)
-                TextButton(
-                  onPressed: onDetailTextBtnTap,
-                  child: Text(
-                    '보기',
-                    style: ZzekakTextStyle.h6(
-                        context, context.color.tertiaryContainer),
-                  ),
-                ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
