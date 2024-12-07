@@ -26,7 +26,13 @@ final class AgreeAllTerms extends StatelessWidget {
               Checkbox(
                 value: isRequiredAgreeOfTerms,
                 onChanged: (value) => onTap(value ?? false),
-                fillColor: WidgetStateProperty.all(context.color.tertiary),
+                fillColor:
+                    WidgetStateColor.resolveWith((Set<WidgetState> states) {
+                  return isRequiredAgreeOfTerms
+                      ? context.color.primary
+                      : context.color.tertiary;
+                }),
+                activeColor: context.color.primary,
               ),
               Text(
                 "모두 동의합니다.",

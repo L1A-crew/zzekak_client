@@ -105,30 +105,37 @@ class _AgreeOfTermsScreenState extends State<AgreeOfTermsScreen> {
                     },
                     fullTermsLink: 'https://www.naver.com',
                   ),
-
                   const Expanded(child: SizedBox.shrink()),
-                  // TODO: 버튼 나타 날 때 애니메이션 추가
-                  if (state.isRequiredAgreeOfTerms)
-                    // TODO: BTN 디자인 변경 (BorderRadius)
-                    ConstrainedBox(
-                      constraints: const BoxConstraints.tightFor(
-                        width: double.infinity,
-                        height: 60.0,
+                  ConstrainedBox(
+                    constraints: const BoxConstraints.tightFor(
+                      width: double.infinity,
+                      height: 60.0,
+                    ),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.resolveWith(
+                          (Set<WidgetState> states) {
+                            return state.isRequiredAgreeOfTerms
+                                ? context.color.primary
+                                : context.color.tertiary.withOpacity(0.5);
+                          },
+                        ),
                       ),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // TODO: 다음 페이지로 이동 로직 추가
-                        },
-                        child: Text(
-                          '다음',
-                          style: ZzekakTextStyle.h5(
-                            context,
-                            context.color.tertiaryContainer,
-                            FontWeight.w900,
-                          ),
+                      onPressed: () {
+                        // TODO: 다음 페이지로 이동 로직 추가
+                      },
+                      child: Text(
+                        '다음',
+                        style: ZzekakTextStyle.h5(
+                          context,
+                          state.isRequiredAgreeOfTerms
+                              ? context.color.onSurface
+                              : context.color.tertiary,
+                          FontWeight.w900,
                         ),
                       ),
                     ),
+                  ),
                 ],
               ),
             ),
