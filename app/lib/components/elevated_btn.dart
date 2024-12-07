@@ -10,6 +10,7 @@ ElevatedButton zzekakElevatedButton({
   required BuildContext context,
   required VoidCallback onPressed,
   required String text,
+  bool disabled = false,
   Color foregroundColor = Colors.black,
   Color? backgroundColor,
   TextStyle? textStyle,
@@ -19,10 +20,11 @@ ElevatedButton zzekakElevatedButton({
   ),
 }) {
   return ElevatedButton(
-    onPressed: onPressed,
+    onPressed: disabled ? null : onPressed,
     style: ElevatedButton.styleFrom(
-      foregroundColor: foregroundColor,
-      backgroundColor: backgroundColor ?? context.color.primary,
+      foregroundColor: disabled ? Colors.grey : foregroundColor,
+      backgroundColor:
+          disabled ? Colors.grey : (backgroundColor ?? context.color.primary),
       splashFactory: NoSplash.splashFactory,
       textStyle:
           textStyle ?? ZzekakTextStyle.h4(context, fontWeight: FontWeight.w600),
