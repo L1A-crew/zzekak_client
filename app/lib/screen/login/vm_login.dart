@@ -53,31 +53,55 @@ final class LoginViewModel extends Cubit<LoginViewState>
         super(LoginViewState.empty());
 
   Future<void> whenLoginBtnTapped(final SocialLoginEvent event) async {
-    final ThirdPartyAuthToken token = await socialLogin(event: event);
+    final ThirdPartyAuthToken token;
+    try {
+      token = await socialLogin(event: event);
+      Logger().i("Social login successful: ${token.oAuthToken}");
+    } catch (e, stackTrace) {
+      Logger().e("Error during social login", error: e, stackTrace: stackTrace);
+      emit(LoginViewState.empty());
+      return;
+    }
 
-    final JoinOrLoginResponse res =
-        await _authenticationAPI.joinOrLogin(JoinOrLoginRequest(
-      token: token.oAuthToken,
-      provider: switch (token) {
-        KakakoTalkAuthToken() => AuthProvider.kakao,
-        AppleAuthToken() => AuthProvider.apple,
-      },
-    ));
-
-    Logger().i("Login success\n${res.tokenContent}");
+    final JoinOrLoginResponse res;
+    try {
+      Logger().i("Calling joinOrLogin API...");
+      res = await _authenticationAPI.joinOrLogin(JoinOrLoginRequest(
+        token: token.oAuthToken,
+        provider: switch (token) {
+          KakaoTalkAuthToken() => AuthProvider.kakao,
+          AppleAuthToken() => AuthProvider.apple,
+        },
+      ));
+      Logger().i("API response received: ${res.tokenContent}");
+    } catch (e, stackTrace) {
+      Logger().e("Error during joinOrLogin API call",
+          error: e, stackTrace: stackTrace);
+      emit(LoginViewState.empty());
+      return;
+    }
 
     final AuthenticationInfo authInfo = AuthenticationInfo(
       res.tokenContent.accessToken,
       res.tokenContent.refreshToken,
     );
 
-    await _tokenProvider.save(authInfo);
+    try {
+      Logger().i("Saving authentication info...");
+      await _tokenProvider.save(authInfo);
+      Logger().i("Authentication info saved successfully.");
+    } catch (e, stackTrace) {
+      Logger().e("Error while saving authentication info",
+          error: e, stackTrace: stackTrace);
+      emit(LoginViewState.empty());
+      return;
+    }
 
     emit(LoginViewState(
       authenticationInfo: authInfo,
       isFirstLogin: res.isFirstLogin,
     ));
 
-    return;
+    Logger().i("Login process completed: First login = ${res.isFirstLogin}");
   }
 }

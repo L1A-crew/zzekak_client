@@ -61,7 +61,7 @@ final class JoinOrLoginRequest extends Equatable
 
 extension _ThirdPartyAuthTokenExtension on ThirdPartyAuthToken {
   AuthProvider convertToAuthProvider() => switch (this) {
-        KakakoTalkAuthToken() => AuthProvider.kakao,
+        KakaoTalkAuthToken() => AuthProvider.kakao,
         AppleAuthToken() => AuthProvider.apple,
       };
 }

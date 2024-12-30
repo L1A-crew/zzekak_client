@@ -28,11 +28,10 @@ class _SplashScreenState extends State<SplashScreen> {
     widget.module.add(const WhenInitialized());
   }
 
-  // @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.color.primary,
+      backgroundColor: context.color.onSecondary,
       body: BlocConsumer(
         bloc: widget.module,
         listener: (

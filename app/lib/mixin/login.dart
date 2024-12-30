@@ -31,18 +31,21 @@ mixin CertificationUsecase {
     }
   }
 
-  Future<KakakoTalkAuthToken> _loginWithKakao(
+  Future<KakaoTalkAuthToken> _loginWithKakao(
       final KakaoLoginEvent kakaoLoginEvent) async {
     if (await kakao_sdk.isKakaoTalkInstalled()) {
-      return (await kakao_sdk.UserApi.instance.loginWithKakaoTalk()).let(
-          (final kakao_sdk.OAuthToken kakaoOAuthToken) => KakakoTalkAuthToken(
+      final kakao_sdk.OAuthToken token =
+          await kakao_sdk.UserApi.instance.loginWithKakaoTalk();
+
+      return token.let(
+          (final kakao_sdk.OAuthToken kakaoOAuthToken) => KakaoTalkAuthToken(
                 oAuthToken: kakaoOAuthToken.idToken ?? '',
                 accessToken: kakaoOAuthToken.accessToken,
                 refreshToken: kakaoOAuthToken.refreshToken ?? '',
               ));
     } else {
       return (await kakao_sdk.UserApi.instance.loginWithKakaoAccount()).let(
-          (final kakao_sdk.OAuthToken kakaoOAuthToken) => KakakoTalkAuthToken(
+          (final kakao_sdk.OAuthToken kakaoOAuthToken) => KakaoTalkAuthToken(
                 oAuthToken: kakaoOAuthToken.idToken ?? '',
                 accessToken: kakaoOAuthToken.accessToken,
                 refreshToken: kakaoOAuthToken.refreshToken ?? '',

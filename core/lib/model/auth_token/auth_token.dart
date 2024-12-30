@@ -35,11 +35,11 @@ sealed class ThirdPartyAuthToken extends Equatable {
 }
 
 /// 카카오톡 로그인을 통해 발급받은 O-Auth 토큰
-final class KakakoTalkAuthToken extends ThirdPartyAuthToken {
+final class KakaoTalkAuthToken extends ThirdPartyAuthToken {
   final String accessToken;
   final String refreshToken;
 
-  const KakakoTalkAuthToken({
+  const KakaoTalkAuthToken({
     required super.oAuthToken,
     required this.accessToken,
     required this.refreshToken,

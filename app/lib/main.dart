@@ -1,12 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:zzekak/di/di_config.dart';
-import 'package:zzekak/zzekak_app.dart';
 import 'package:zzekak/stub.dart'
     if (dart.html) 'package:zzekak/web_uri_setup.dart';
+import 'package:zzekak/zzekak_app.dart';
 
 late final GetIt getIt;
 
@@ -21,10 +22,13 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
+
   await resolveDependency();
   KakaoSdk.init(
-      javaScriptAppKey: "1be9d48b92741228526daa7cb8e14ced",
-      nativeAppKey: "5264e2b13b4d8bf7d5c0f42f68e11eb0");
+    javaScriptAppKey: dotenv.get("KAKAO_JS_KEY"),
+    nativeAppKey: dotenv.get("KAKAO_NATIVE_KEY"),
+  );
   webSetUp();
   runApp(const ZzekakApp());
 }

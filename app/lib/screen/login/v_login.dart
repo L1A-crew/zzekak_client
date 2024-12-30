@@ -17,7 +17,6 @@ import 'package:get_it/get_it.dart';
 import 'package:zzekak/gen/asset_paths.dart';
 import 'package:zzekak/mixin/login.dart';
 import 'package:zzekak/routes/app_routes.dart';
-import 'package:zzekak/schemes/color_schemes.dart';
 import 'package:zzekak/schemes/font_style.dart';
 import 'package:zzekak/screen/login/vm_login.dart';
 
@@ -57,21 +56,11 @@ class LoginScreen extends StatelessWidget {
             children: [
               Expanded(child: Container()),
               Column(children: [
-                CircleAvatar(
-                    backgroundColor: context.color.primary,
-                    radius: 36.0,
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: SvgPicture.asset(
-                          AssetPaths.TEXT_LOGO_SVG.path,
-                          colorFilter: const ColorFilter.mode(
-                              Colors.black, BlendMode.srcIn),
-                        ),
-                      ),
-                    )),
+                SvgPicture.asset(
+                  AssetPaths.BLACK_AND_WHITE_SVG.path,
+                ),
                 Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Column(
                     children: [
                       Text('아껴주세요', style: ZzekakTextStyle.h1(context)),
@@ -92,7 +81,7 @@ class LoginScreen extends StatelessWidget {
                         _viewModel.whenLoginBtnTapped(KakaoLoginEvent()),
                     child: SvgPicture.asset(AssetPaths.KAKAO_LOGIN_SVG.path),
                   ),
-                  const Padding(padding: EdgeInsets.all(5.0)),
+                  const Padding(padding: EdgeInsets.all(7.0)),
                   Visibility(
                     visible: !kIsWeb && Platform.isIOS,
                     child: GestureDetector(
