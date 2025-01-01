@@ -4,7 +4,6 @@
  */
 import 'package:core/model/user/user_model.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:zzekak/routes/app_routes.dart';
 
 part 'string_home.dart';
@@ -39,15 +38,15 @@ class _HomeScreenState extends State<HomeScreen> {
           Text(
               "${user?.accessToken.toString() ?? "now loading..."} ${user?.refreshToken.toString()}"),
           TextButton(
-            onPressed: () => GoRouter.of(context).go(LoginRoute.PATH),
+            onPressed: () => const LoginRoute().go(context),
             child: const Text("로그인 페이지로 이동"),
           ),
           TextButton(
-            onPressed: () => GoRouter.of(context).go(CalendarRoute.PATH),
+            onPressed: () => const CalendarRoute().go(context),
             child: const Text("달력 페이지로 이동"),
           ),
           TextButton(
-            onPressed: () => GoRouter.of(context).go(SignedRoute.PATH),
+            onPressed: () => const SignedRoute().go(context),
             child: const Text("가입완료 페이지로 이동"),
           ),
           TextButton(
@@ -55,8 +54,12 @@ class _HomeScreenState extends State<HomeScreen> {
             child: const Text("약속생성 하기"),
           ),
           TextButton(
-            onPressed: () => GoRouter.of(context).go(AgreeOfTermsRoute.PATH),
+            onPressed: () => const AgreeOfTermsRoute().go(context),
             child: const Text("약관동의 페이지로 이동"),
+          ),
+          TextButton(
+            onPressed: () => const NickNameScreenRoute().go(context),
+            child: const Text("닉네임 설정 페이지로 이동"),
           ),
         ],
       ),

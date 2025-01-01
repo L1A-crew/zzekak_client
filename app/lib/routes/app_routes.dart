@@ -9,6 +9,7 @@ import 'package:zzekak/screen/appointment_setup/v_appointment_setup.dart';
 import 'package:zzekak/screen/home/v_home.dart';
 import 'package:zzekak/screen/login/v_login.dart';
 import 'package:zzekak/screen/sign_in/agree_of_terms/agree_of_terms_screen.dart';
+import 'package:zzekak/screen/sign_in/nickname/nickname_screen.dart';
 import 'package:zzekak/screen/signed/v_signed.dart';
 import 'package:zzekak/screen/splash/v_splash.dart';
 
@@ -104,6 +105,18 @@ final class AgreeOfTermsRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       AgreeOfTermsScreen();
+}
+
+@TypedGoRoute<NickNameScreenRoute>(
+    path: NickNameScreenRoute.PATH, name: NickNameScreenRoute.NAME)
+final class NickNameScreenRoute extends GoRouteData {
+  static const String PATH = '/nickname';
+  static const String NAME = 'nickname';
+
+  const NickNameScreenRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => NicknameScreen();
 }
 
 FutureOr<String?> _initializationRedirectionLogic(
