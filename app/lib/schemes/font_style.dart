@@ -3,6 +3,7 @@
 * Copyright (c) . All rights reserved.
 */
 import 'package:flutter/material.dart';
+import 'package:zzekak/schemes/color_schemes.dart';
 
 /// 유저의 폰트 배율을 조절합니다.
 enum _FontSize {
@@ -46,21 +47,21 @@ abstract class ZzekakTextStyle extends TextStyle {
           [final Color? color, final FontWeight? fontWeight]) =>
       TextStyle(
         fontWeight: fontWeight ?? FontWeight.w600,
-        fontSize: 30 * fontFactor(context),
+        fontSize: 28 * fontFactor(context),
         height: 1.4,
         letterSpacing: -0.41,
-        color: color,
+        color: color ?? context.color.onSurface,
       );
 
   // headline 2
   static TextStyle h2(final BuildContext context,
           [final Color? color, final FontWeight? fontWeight]) =>
       TextStyle(
-        fontWeight: fontWeight ?? FontWeight.w400,
+        fontWeight: fontWeight ?? FontWeight.w700,
         fontSize: 22 * fontFactor(context),
         height: 1.25,
         letterSpacing: -0.41,
-        color: color,
+        color: color ?? context.color.onSurface,
       );
 
   // headline 3
@@ -71,7 +72,7 @@ abstract class ZzekakTextStyle extends TextStyle {
         fontSize: 18 * fontFactor(context),
         height: 1.2,
         letterSpacing: -0.41,
-        color: color,
+        color: color ?? context.color.onSurface,
       );
 
   // headline 4
@@ -82,7 +83,7 @@ abstract class ZzekakTextStyle extends TextStyle {
         fontSize: 16 * fontFactor(context),
         height: 1.2,
         letterSpacing: -0.41,
-        color: color,
+        color: color ?? context.color.onSurface,
       );
 
   // headline 5
@@ -93,7 +94,7 @@ abstract class ZzekakTextStyle extends TextStyle {
         fontSize: 14,
         height: 1.15,
         letterSpacing: -0.41,
-        color: color,
+        color: color ?? context.color.onSurface,
       );
 
   // headline 6
@@ -104,7 +105,7 @@ abstract class ZzekakTextStyle extends TextStyle {
         fontSize: 13,
         height: 1.24,
         letterSpacing: -0.41,
-        color: color,
+        color: color ?? context.color.onSurface,
       );
 
   // headline 7
@@ -115,7 +116,7 @@ abstract class ZzekakTextStyle extends TextStyle {
         fontSize: 12,
         height: 1.15,
         letterSpacing: -0.41,
-        color: color,
+        color: color ?? context.color.onSurface,
       );
 
   // headline 8
@@ -126,6 +127,6 @@ abstract class ZzekakTextStyle extends TextStyle {
         fontSize: 10,
         height: 1.24,
         letterSpacing: -0.41,
-        color: color,
+        color: color ?? context.color.onSurface,
       );
 }

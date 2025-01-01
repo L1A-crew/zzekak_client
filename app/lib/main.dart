@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:zzekak/di/di_config.dart';
 import 'package:zzekak/stub.dart'
@@ -24,6 +25,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
 
+  initializeDateFormatting('ko_KR');
   await resolveDependency();
   KakaoSdk.init(
     javaScriptAppKey: dotenv.get("KAKAO_JS_KEY"),

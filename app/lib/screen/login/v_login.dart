@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
+import 'package:zzekak/components/elevated_btn.dart';
 import 'package:zzekak/gen/asset_paths.dart';
 import 'package:zzekak/mixin/login.dart';
 import 'package:zzekak/routes/app_routes.dart';
@@ -75,7 +76,17 @@ class LoginScreen extends StatelessWidget {
               ]),
               Expanded(child: Container()),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: zzekakElevatedButton(
+                        context: context,
+                        onPressed: () =>
+                            const AppointmentSetupRoute().go(context),
+                        text: '약속 생성하기'),
+                  ),
+                  const Padding(padding: EdgeInsets.all(7.0)),
                   GestureDetector(
                     onTap: () =>
                         _viewModel.whenLoginBtnTapped(KakaoLoginEvent()),
