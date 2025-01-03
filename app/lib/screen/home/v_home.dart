@@ -4,12 +4,24 @@
  */
 import 'package:core/model/user/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:zzekak/routes/app_routes.dart';
 
-part 'string_home.dart';
-
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final DateTime? selectedDate;
+  final DateTime? selectedTime;
+  final String? selectedStartLocation;
+  final String? selectedEndLocation;
+  final String? appointmentName;
+
+  const HomeScreen({
+    super.key,
+    this.selectedDate,
+    this.selectedTime,
+    this.selectedStartLocation,
+    this.selectedEndLocation,
+    this.appointmentName,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -18,9 +30,21 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   AuthenticationInfo? user;
 
+  DateTime? _selectedDate;
+  DateTime? _selectedTime;
+  String? _selectedStartLocation;
+  String? _selectedEndLocation;
+  String? _appointmentName;
+
   @override
   void initState() {
     super.initState();
+
+    _selectedDate = widget.selectedDate;
+    _selectedTime = widget.selectedTime;
+    _selectedStartLocation = widget.selectedStartLocation;
+    _selectedEndLocation = widget.selectedEndLocation;
+    _appointmentName = widget.appointmentName;
   }
 
   @override
@@ -34,16 +58,11 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          Text(_KoKrString.TITLE.text),
           Text(
               "${user?.accessToken.toString() ?? "now loading..."} ${user?.refreshToken.toString()}"),
           TextButton(
             onPressed: () => const LoginRoute().go(context),
             child: const Text("로그인 페이지로 이동"),
-          ),
-          TextButton(
-            onPressed: () => const CalendarRoute().go(context),
-            child: const Text("달력 페이지로 이동"),
           ),
           TextButton(
             onPressed: () => const SignedRoute().go(context),
@@ -61,6 +80,15 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () => const NickNameScreenRoute().go(context),
             child: const Text("닉네임 설정 페이지로 이동"),
           ),
+          Text(
+            '날짜: ${_selectedDate != null ? DateFormat('yyyy.MM.dd').format(_selectedDate!) : 'N/A'}',
+          ),
+          Text(
+            '시간: ${_selectedTime != null ? DateFormat('a HH:mm').format(_selectedTime!) : 'N/A'}',
+          ),
+          Text('출발지: ${_selectedStartLocation ?? 'N/A'}'),
+          Text('도착지: ${_selectedEndLocation ?? 'N/A'}'),
+          Text('약속 이름: ${_appointmentName ?? _selectedEndLocation}'),
         ],
       ),
     ));

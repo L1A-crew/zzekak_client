@@ -115,6 +115,11 @@ class _AppointmentSetupViewState extends State<AppointmentSetupView> {
               child: zzekakElevatedButton(
                 context: context,
                 onPressed: () async {
+                  if (selectedTime == null) {
+                    setState(() {
+                      selectedTime = DateTime.now();
+                    });
+                  }
                   Navigator.pop(context);
                 },
                 text: '확인',
@@ -429,7 +434,13 @@ class _AppointmentSetupViewState extends State<AppointmentSetupView> {
                       context: context,
                       onPressed: () async {
                         if (_formKey.currentState?.validate() ?? false) {
-                          return const HomeRoute().go(context);
+                          return HomeRoute(
+                            selectedDate: selectedDate,
+                            selectedTime: selectedTime,
+                            selectedStartLocation: selectedStartLocation,
+                            selectedEndLocation: selectedEndLocation,
+                            appointmentName: appointmentName,
+                          ).go(context);
                         }
                       },
                       text: '약속생성하기')
