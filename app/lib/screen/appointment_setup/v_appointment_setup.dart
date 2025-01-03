@@ -135,6 +135,7 @@ class _AppointmentSetupViewState extends State<AppointmentSetupView> {
   Widget _buildStartLocationPicker() {
     return Container(
       height: 400,
+      color: context.color.surface,
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
@@ -170,6 +171,7 @@ class _AppointmentSetupViewState extends State<AppointmentSetupView> {
   Widget _buildEndLocationPicker() {
     return Container(
       height: 400,
+      color: context.color.surface,
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
@@ -204,6 +206,7 @@ class _AppointmentSetupViewState extends State<AppointmentSetupView> {
 
   Widget _buildNameInput() {
     return Container(
+      color: context.color.surface,
       padding: EdgeInsets.only(
         bottom: MediaQuery.of(context).viewInsets.bottom,
       ),
@@ -381,7 +384,7 @@ class _AppointmentSetupViewState extends State<AppointmentSetupView> {
                                                           ?.isEmpty ??
                                                       true
                                                   ? Colors.grey[400]
-                                                  : Colors.black,
+                                                  : context.color.onSurface,
                                               fontSize: 16,
                                             ),
                                           ),
@@ -407,7 +410,7 @@ class _AppointmentSetupViewState extends State<AppointmentSetupView> {
                                                           ?.isEmpty ??
                                                       true
                                                   ? Colors.grey[400]
-                                                  : Colors.black,
+                                                  : context.color.onSurface,
                                               fontSize: 16,
                                             ),
                                           ),

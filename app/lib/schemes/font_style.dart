@@ -66,7 +66,7 @@ abstract class ZzekakTextStyle extends TextStyle {
 
   // headline 3
   static TextStyle h3(final BuildContext context,
-          [final Color? color, final FontWeight? fontWeight]) =>
+          {final Color? color, final FontWeight? fontWeight}) =>
       TextStyle(
         fontWeight: fontWeight ?? FontWeight.w400,
         fontSize: 18 * fontFactor(context),
@@ -91,7 +91,7 @@ abstract class ZzekakTextStyle extends TextStyle {
           [final Color? color, final FontWeight? fontWeight]) =>
       TextStyle(
         fontWeight: fontWeight ?? FontWeight.w400,
-        fontSize: 14,
+        fontSize: 14 * fontFactor(context),
         height: 1.15,
         letterSpacing: -0.41,
         color: color ?? context.color.onSurface,
@@ -99,32 +99,10 @@ abstract class ZzekakTextStyle extends TextStyle {
 
   // headline 6
   static TextStyle h6(final BuildContext context,
-          [final Color? color, final FontWeight? fontWeight]) =>
+          {final Color? color, final FontWeight? fontWeight}) =>
       TextStyle(
         fontWeight: fontWeight ?? FontWeight.w400,
-        fontSize: 13,
-        height: 1.24,
-        letterSpacing: -0.41,
-        color: color ?? context.color.onSurface,
-      );
-
-  // headline 7
-  static TextStyle h7(final BuildContext context,
-          [final Color? color, final FontWeight? fontWeight]) =>
-      TextStyle(
-        fontWeight: fontWeight ?? FontWeight.w400,
-        fontSize: 12,
-        height: 1.15,
-        letterSpacing: -0.41,
-        color: color ?? context.color.onSurface,
-      );
-
-  // headline 8
-  static TextStyle h8(final BuildContext context,
-          [final Color? color, final FontWeight? fontWeight]) =>
-      TextStyle(
-        fontWeight: fontWeight ?? FontWeight.w400,
-        fontSize: 10,
+        fontSize: 13 * fontFactor(context),
         height: 1.24,
         letterSpacing: -0.41,
         color: color ?? context.color.onSurface,

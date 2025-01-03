@@ -51,7 +51,8 @@ final class TermsIndicator extends StatelessWidget {
                         TextSpan(
                             text: '\n$detailText',
                             style: ZzekakTextStyle.h6(context,
-                                    context.color.primary, FontWeight.w900)
+                                    color: context.color.primary,
+                                    fontWeight: FontWeight.w900)
                                 .copyWith(height: 1.5)),
                     ],
                   ),
@@ -62,8 +63,8 @@ final class TermsIndicator extends StatelessWidget {
                   onPressed: () => launchUrl(Uri.parse(fullTermsLink)),
                   child: Text(
                     '보기',
-                    style: ZzekakTextStyle.h6(
-                        context, context.color.tertiaryContainer),
+                    style: ZzekakTextStyle.h6(context,
+                        color: context.color.tertiaryContainer),
                   ),
                 ),
             ],

@@ -78,6 +78,18 @@ class LoginScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  TextButton(
+                    onPressed: () => const SignedRoute().go(context),
+                    child: const Text("가입완료 페이지로 이동"),
+                  ),
+                  TextButton(
+                    onPressed: () => const AgreeOfTermsRoute().go(context),
+                    child: const Text("약관동의 페이지로 이동"),
+                  ),
+                  TextButton(
+                    onPressed: () => const NickNameScreenRoute().go(context),
+                    child: const Text("닉네임 설정 페이지로 이동"),
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: zzekakElevatedButton(
