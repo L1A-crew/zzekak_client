@@ -60,6 +60,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '257454421788',
     projectId: 'zzekakproject',
     storageBucket: 'zzekakproject.appspot.com',
-    iosBundleId: 'com.l1a.zzeakak',
+    iosBundleId: 'com.l1a.zzekak',
   );
 }
