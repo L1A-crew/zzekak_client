@@ -8,6 +8,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zzekak/components/elevated_btn.dart';
+import 'package:zzekak/routes/app_routes.dart';
 import 'package:zzekak/schemes/color_schemes.dart';
 import 'package:zzekak/schemes/font_style.dart';
 import 'package:zzekak/screen/sign_in/agree_of_terms/view_model/state.dart';
@@ -111,28 +113,16 @@ class _AgreeOfTermsScreenState extends State<AgreeOfTermsScreen> {
                       width: double.infinity,
                       height: 60.0,
                     ),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.resolveWith(
-                          (Set<WidgetState> states) {
-                            return state.isRequiredAgreeOfTerms
-                                ? context.color.primary
-                                : context.color.tertiary.withOpacity(0.5);
-                          },
-                        ),
-                      ),
-                      onPressed: () {
-                        // TODO: 다음 페이지로 이동 로직 추가
-                      },
-                      child: Text(
-                        '다음',
-                        style: ZzekakTextStyle.h5(
-                          context,
-                          state.isRequiredAgreeOfTerms
-                              ? context.color.onSurface
-                              : context.color.tertiary,
-                          FontWeight.w900,
-                        ),
+                    child: zzekakElevatedButton(
+                      context: context,
+                      onPressed: () => const NickNameScreenRoute().go(context),
+                      text: '다음',
+                      textStyle: ZzekakTextStyle.h5(
+                        context,
+                        state.isRequiredAgreeOfTerms
+                            ? context.color.onSurface
+                            : context.color.tertiary,
+                        FontWeight.w900,
                       ),
                     ),
                   ),

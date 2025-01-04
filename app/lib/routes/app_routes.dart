@@ -124,7 +124,7 @@ final class NickNameScreenRoute extends GoRouteData {
   const NickNameScreenRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => NicknameScreen();
+  Widget build(BuildContext context, GoRouterState state) => const NicknameScreen();
 }
 
 FutureOr<String?> _initializationRedirectionLogic(

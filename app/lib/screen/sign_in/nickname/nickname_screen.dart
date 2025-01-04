@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:zzekak/components/elevated_btn.dart';
+import 'package:zzekak/routes/app_routes.dart';
 import 'package:zzekak/schemes/color_schemes.dart';
 import 'package:zzekak/schemes/font_style.dart';
 
@@ -108,31 +111,20 @@ class _NicknameScreenState extends State<NicknameScreen> {
         width: double.infinity,
         height: 60,
         padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: ElevatedButton(
-          statesController: WidgetStatesController(),
-          style: ButtonStyle(
-            backgroundColor: WidgetStateColor.resolveWith(
-              (states) {
-                if (states.contains(WidgetState.disabled)) {
-                  return context.color.tertiary;
-                }
-
-                return context.color.primary;
-              },
-            ),
-          ),
+        child: zzekakElevatedButton(
+          context: context,
           onPressed: () {
             if (_textCtr.text.isEmpty ||
                 !(_formKey.currentState?.validate() ?? false)) {
-              showDialog(
-                  context: context,
-                  builder: (context) => Text("이미 사용중인 닉네임이에요"));
+              Fluttertoast.showToast(msg: '올바른 닉네임을 입력해주세요.');
+
+              return;
             }
+
+            const HomeRoute().go(context);
           },
-          child: Text(
-            "다음",
-            style: ZzekakTextStyle.h5(context, Colors.black),
-          ),
+          text: "다음",
+          textStyle: ZzekakTextStyle.h5(context, Colors.black),
         ),
       ),
     );

@@ -36,21 +36,34 @@ final class LoginViewState extends Equatable {
   @override
   bool get stringify => true;
 
-  factory LoginViewState.empty() => const LoginViewState(
-        authenticationInfo: null,
-        isFirstLogin: null,
-      );
+  static const LoginViewState empty = LoginViewState(
+    authenticationInfo: null,
+    isFirstLogin: null,
+  );
 }
 
 final class LoginViewModel extends Cubit<LoginViewState>
     with CertificationUsecase {
+  static LoginViewModel? _instance;
   final TokenProvider _tokenProvider;
   final AuthenticationAPI _authenticationAPI;
 
-  LoginViewModel({required final GetIt getIt})
-      : _tokenProvider = getIt.get<TokenProvider>(),
-        _authenticationAPI = getIt.get<AuthenticationAPI>(),
-        super(LoginViewState.empty());
+  LoginViewModel(
+    super.initialState, {
+    required final TokenProvider tokenProvider,
+    required final AuthenticationAPI authenticationAPI,
+  })  : _tokenProvider = tokenProvider,
+        _authenticationAPI = authenticationAPI;
+
+  factory LoginViewModel.newInstance() {
+    final getIt = GetIt.instance;
+    return LoginViewModel._instance ??
+        (LoginViewModel._instance = LoginViewModel(
+          LoginViewState.empty,
+          tokenProvider: getIt.get<TokenProvider>(),
+          authenticationAPI: getIt.get<AuthenticationAPI>(),
+        ));
+  }
 
   Future<void> whenLoginBtnTapped(final SocialLoginEvent event) async {
     final ThirdPartyAuthToken token;
@@ -59,7 +72,7 @@ final class LoginViewModel extends Cubit<LoginViewState>
       Logger().i("Social login successful: ${token.oAuthToken}");
     } catch (e, stackTrace) {
       Logger().e("Error during social login", error: e, stackTrace: stackTrace);
-      emit(LoginViewState.empty());
+      emit(LoginViewState.empty);
       return;
     }
 
@@ -77,7 +90,7 @@ final class LoginViewModel extends Cubit<LoginViewState>
     } catch (e, stackTrace) {
       Logger().e("Error during joinOrLogin API call",
           error: e, stackTrace: stackTrace);
-      emit(LoginViewState.empty());
+      emit(LoginViewState.empty);
       return;
     }
 
@@ -93,7 +106,7 @@ final class LoginViewModel extends Cubit<LoginViewState>
     } catch (e, stackTrace) {
       Logger().e("Error while saving authentication info",
           error: e, stackTrace: stackTrace);
-      emit(LoginViewState.empty());
+      emit(LoginViewState.empty);
       return;
     }
 

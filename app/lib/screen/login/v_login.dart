@@ -8,12 +8,13 @@
 
 import 'dart:io';
 
-import 'package:core/model/user/user_model.dart';
+import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
+import 'package:logger/logger.dart';
 import 'package:zzekak/components/elevated_btn.dart';
 import 'package:zzekak/gen/asset_paths.dart';
 import 'package:zzekak/mixin/login.dart';
@@ -21,34 +22,34 @@ import 'package:zzekak/routes/app_routes.dart';
 import 'package:zzekak/schemes/font_style.dart';
 import 'package:zzekak/screen/login/vm_login.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   final LoginViewModel _viewModel;
 
   LoginScreen({
     required final GetIt di,
     super.key,
-  }) : _viewModel = LoginViewModel(getIt: di);
+  }) :
+        _viewModel = LoginViewModel.newInstance();
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: BlocListener<LoginViewModel, LoginViewState>(
-          bloc: _viewModel,
+          bloc: widget._viewModel
+            ..also((it) => Logger().i("blocHash: ${it.hashCode}")),
           listener: (final BuildContext context, final LoginViewState state) {
             switch (state) {
-              case LoginViewState(
-                  authenticationInfo: AuthenticationInfo(),
-                  isFirstLogin: true
-                ):
-                const SignedRoute().go(context);
-            }
-            switch (state) {
-              case LoginViewState(
-                  authenticationInfo: AuthenticationInfo(),
-                  isFirstLogin: false
-                ):
-                const HomeRoute().go(context);
+              case LoginViewState(isFirstLogin: true):
+                const AgreeOfTermsRoute().go(context);
+
+              case LoginViewState(isFirstLogin: false):
+                const AgreeOfTermsRoute().go(context);
             }
           },
           child: Column(
@@ -100,16 +101,18 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const Padding(padding: EdgeInsets.all(7.0)),
                   GestureDetector(
-                    onTap: () =>
-                        _viewModel.whenLoginBtnTapped(KakaoLoginEvent()),
+                    onTap: () => widget._viewModel
+                        .whenLoginBtnTapped(KakaoLoginEvent())
+                      ..also((it) => Logger().i("blocHash: ${it.hashCode}")),
                     child: SvgPicture.asset(AssetPaths.KAKAO_LOGIN_SVG.path),
                   ),
                   const Padding(padding: EdgeInsets.all(7.0)),
                   Visibility(
                     visible: !kIsWeb && Platform.isIOS,
                     child: GestureDetector(
-                      onTap: () =>
-                          _viewModel.whenLoginBtnTapped(AppleLoginEvent()),
+                      onTap: () => widget._viewModel
+                        ..also((it) => Logger().i("blocHash: ${it.hashCode}"))
+                            .whenLoginBtnTapped(AppleLoginEvent()),
                       child: SvgPicture.asset(AssetPaths.APPLE_LOGIN_SVG.path),
                     ),
                   ),
