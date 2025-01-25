@@ -10,9 +10,9 @@ environment:
 dependencies:
   equatable: 2.0.5
   logger: 2.4.0
+  faker: 2.2.0
 
 dev_dependencies:
   lints: 3.0.0
   build_runner: 2.4.13
-  flutter_test:
-    sdk: flutter
+  test: 1.25.14
