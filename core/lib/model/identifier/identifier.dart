@@ -7,20 +7,15 @@
 //
 
 /// 엔티티를 식별할 수 있는 고유한 값을 의미합니다.
-final class Identifier {
-  final String _identificationId;
-
-  const Identifier(this._identificationId);
+mixin Identifier {
+  String get identificationKey;
 
   @override
   bool operator ==(Object other) {
     if (other is! Identifier) return false;
-    return _identificationId == other._identificationId;
+    return identificationKey == other.identificationKey;
   }
 
   @override
-  int get hashCode => _identificationId.hashCode;
-
-  @override
-  String toString() => "Identifier: $_identificationId";
+  int get hashCode => identificationKey.hashCode;
 }

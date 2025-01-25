@@ -8,7 +8,7 @@
 
 import 'package:core/exception/error_code_book.dart';
 import 'package:core/exception/server_io_exception.dart';
-import 'package:core/model/auth_token/auth_token.dart';
+import 'package:core/model/auth_token/trd_auth_token.dart';
 import 'package:meta/meta.dart';
 
 @protected

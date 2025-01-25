@@ -6,7 +6,7 @@
 // @since 2024-05-18
 //
 
-import 'package:core/model/auth_token/auth_token.dart';
+import 'package:core/model/auth_token/trd_auth_token.dart';
 import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as kakao_sdk;

@@ -6,7 +6,7 @@
 // @since 2024-02-24
 //
 
-import 'package:core/model/auth_token/auth_token.dart';
+import 'package:core/model/auth_token/trd_auth_token.dart';
 import 'package:core/model/local_storage.dart';
 import 'package:data/api/auth_api/auth_api.dart';
 import 'package:data/api/auth_api/request/join_or_login_request.dart';

@@ -1,4 +1,4 @@
-import 'package:core/model/user/user_model.dart';
+import 'package:core/model/auth_token/auth_token.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zzekak/gen/asset_paths.dart';
@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
               return;
             case Initialized(authInfo: null):
               const LoginRoute().go(context);
-            case Initialized(authInfo: final AuthenticationInfo authInfo):
+            case Initialized(authInfo: final AuthToken authInfo):
               const HomeRoute().go(context);
           }
         },

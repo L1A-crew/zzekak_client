@@ -6,12 +6,10 @@
 // @since 2023-12-16
 //
 
-import 'package:core/model/user/user_model.dart';
+import 'package:core/model/auth_token/auth_token.dart';
 import 'package:core/repository/token_provider/token_provider.dart';
-import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:data/api/auth_api/auth_api.dart';
 import 'package:data/api/auth_api/request/join_or_login_request.dart';
-import 'package:data/api/auth_api/response/join_or_login_response.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,9 +29,9 @@ final class TokenProviderImpl implements TokenProvider {
         _sharedPreferences = searchPreferences;
 
   @override
-  Future<AuthenticationInfo?> findMe() async {
+  Future<AuthToken?> findMe() async {
     try {
-      return AuthenticationInfo(
+      return AuthToken(
         await _sharedPreferences.getString(TokenProvider.keyAccessToken)!,
         await _sharedPreferences.getString(TokenProvider.keyRefreshToken)!,
       );
@@ -43,7 +41,7 @@ final class TokenProviderImpl implements TokenProvider {
   }
 
   @override
-  Future<AuthenticationInfo> save(AuthenticationInfo user) async {
+  Future<AuthToken> save(AuthToken user) async {
     await _sharedPreferences.setString(
         TokenProvider.keyAccessToken, user.accessToken);
     await _sharedPreferences.setString(

@@ -7,6 +7,7 @@
 //
 
 import 'package:bloc/bloc.dart';
+import 'package:core/model/auth_token/auth_token.dart';
 import 'package:core/repository/token_provider/token_provider.dart';
 import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -41,19 +42,31 @@ final class InitializationModule
   factory InitializationModule.newInstance() =>
       InitializationModule(const Uninitialized());
 
+  Future<FirebaseApp> get firebaseInitialize =>
+      Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+          .then((it) {
+        FirebaseMessaging.onMessage.listen(
+          (final RemoteMessage message) {
+            Logger().i("FCM message received ${message.data}");
+            // TODO: local notification 이용해 알림 표시
+          },
+        );
+        return it;
+      });
+
   Future<void> _onInitialized(
     final AppInitializationEvent event,
     final Emitter<AppInitializationState> emitter,
   ) async {
     // 초기화 이후 다시 초기화 되는 경우를 방지
     if (state is Initialized) return;
-    await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform);
-    FirebaseMessaging.onMessage.listen((final RemoteMessage message) {
-      Logger().i("FCM message received ${message.data}");
-    });
+    final initialFuture = await (
+      firebaseInitialize,
+      Permission.notification.isGranted,
+      _tokenProvider.findMe()
+    ).wait;
 
-    if (await Permission.notification.isGranted) {
+    if (initialFuture.isNotificationGranted) {
       getFCMToken.also((final Future<String?> Function() couldBeToken) async {
         final res = await couldBeToken();
         if (res is String) {
@@ -89,4 +102,12 @@ Future<String?> getFCMToken() async {
     Logger().e("FCM token acquire failed $e\n $s");
     return null;
   }
+}
+
+extension on (FirebaseApp, bool, AuthToken?) {
+  FirebaseApp get firebaseApp => $1;
+
+  bool get isNotificationGranted => $2;
+
+  AuthToken? get authInfo => $3;
 }

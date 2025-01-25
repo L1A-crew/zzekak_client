@@ -6,7 +6,7 @@
 // @since 2024-08-10
 //
 
-import 'package:core/model/user/user_model.dart';
+import 'package:core/model/auth_token/auth_token.dart';
 import 'package:equatable/equatable.dart';
 
 /// Zzekak App의 초기화 여부를 나타내는 상태
@@ -27,7 +27,7 @@ final class Uninitialized extends AppInitializationState {
 
 /// 초기화가 완료된 상태
 final class Initialized extends AppInitializationState {
-  final AuthenticationInfo? authInfo;
+  final AuthToken? authInfo;
 
   const Initialized({
     required this.authInfo,
@@ -56,7 +56,6 @@ final class WhenInitialized extends AppInitializationEvent {
   bool get stringify => true;
 }
 
-// 이 Event 는 아직 필요하진 않아보인다만... 일단 만들어놓았습니다.
 /// 초기화를 다시 시작하는 이벤트
 final class WhenReInitialized extends AppInitializationEvent {
   const WhenReInitialized();

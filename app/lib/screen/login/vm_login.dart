@@ -8,7 +8,7 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:core/model/auth_token/auth_token.dart';
-import 'package:core/model/user/user_model.dart';
+import 'package:core/model/auth_token/trd_auth_token.dart';
 import 'package:core/repository/token_provider/token_provider.dart';
 import 'package:data/api/auth_api/auth_api.dart';
 import 'package:data/api/auth_api/request/join_or_login_request.dart';
@@ -19,7 +19,7 @@ import 'package:logger/logger.dart';
 import 'package:zzekak/mixin/login.dart';
 
 final class LoginViewState extends Equatable {
-  final AuthenticationInfo? authenticationInfo;
+  final AuthToken? authenticationInfo;
   final bool? isFirstLogin;
 
   const LoginViewState({
@@ -94,7 +94,7 @@ final class LoginViewModel extends Cubit<LoginViewState>
       return;
     }
 
-    final AuthenticationInfo authInfo = AuthenticationInfo(
+    final AuthToken authInfo = AuthToken(
       res.tokenContent.accessToken,
       res.tokenContent.refreshToken,
     );

@@ -6,7 +6,7 @@
 // @since 2024-02-25
 //
 
-import 'package:core/model/auth_token/auth_token.dart';
+import 'package:core/model/auth_token/trd_auth_token.dart';
 import 'package:data/api/common_dto/token_content_dto.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
