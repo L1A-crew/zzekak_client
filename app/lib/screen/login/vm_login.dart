@@ -10,7 +10,7 @@ import 'package:bloc/bloc.dart';
 import 'package:core/model/auth_token/auth_token.dart';
 import 'package:core/model/auth_token/trd_auth_token.dart';
 import 'package:core/repository/token_provider/token_provider.dart';
-import 'package:data/api/auth_api/auth_api.dart';
+import 'package:data/api/auth_api/user_api.dart';
 import 'package:data/api/auth_api/request/join_or_login_request.dart';
 import 'package:data/api/auth_api/response/join_or_login_response.dart';
 import 'package:equatable/equatable.dart';
@@ -46,12 +46,12 @@ final class LoginViewModel extends Cubit<LoginViewState>
     with CertificationUsecase {
   static LoginViewModel? _instance;
   final TokenProvider _tokenProvider;
-  final AuthenticationAPI _authenticationAPI;
+  final UserAPI _authenticationAPI;
 
   LoginViewModel(
     super.initialState, {
     required final TokenProvider tokenProvider,
-    required final AuthenticationAPI authenticationAPI,
+    required final UserAPI authenticationAPI,
   })  : _tokenProvider = tokenProvider,
         _authenticationAPI = authenticationAPI;
 
@@ -61,7 +61,7 @@ final class LoginViewModel extends Cubit<LoginViewState>
         (LoginViewModel._instance = LoginViewModel(
           LoginViewState.empty,
           tokenProvider: getIt.get<TokenProvider>(),
-          authenticationAPI: getIt.get<AuthenticationAPI>(),
+          authenticationAPI: getIt.get<UserAPI>(),
         ));
   }
 
@@ -101,7 +101,7 @@ final class LoginViewModel extends Cubit<LoginViewState>
 
     try {
       Logger().i("Saving authentication info...");
-      await _tokenProvider.save(authInfo);
+      await _tokenProvider.saveToken(authInfo);
       Logger().i("Authentication info saved successfully.");
     } catch (e, stackTrace) {
       Logger().e("Error while saving authentication info",

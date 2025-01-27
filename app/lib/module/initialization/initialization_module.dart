@@ -63,7 +63,7 @@ final class InitializationModule
     final initialFuture = await (
       firebaseInitialize,
       Permission.notification.isGranted,
-      _tokenProvider.findMe()
+      _tokenProvider.findToken()
     ).wait;
 
     if (initialFuture.isNotificationGranted) {
@@ -71,6 +71,7 @@ final class InitializationModule
         final res = await couldBeToken();
         if (res is String) {
           Logger().i("FCM token acquired $res");
+
         }
       });
     }
@@ -78,7 +79,7 @@ final class InitializationModule
     await Future.delayed(const Duration(milliseconds: 500));
 
     emitter(Initialized(
-      authInfo: await _tokenProvider.findMe(),
+      authInfo: await _tokenProvider.findToken(),
     ));
   }
 
@@ -88,7 +89,7 @@ final class InitializationModule
   ) async {
     await Future.delayed(const Duration(seconds: 1));
     emitter(Initialized(
-      authInfo: await _tokenProvider.findMe(),
+      authInfo: await _tokenProvider.findToken(),
     ));
   }
 }

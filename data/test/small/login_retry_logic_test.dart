@@ -8,7 +8,7 @@
 
 import 'dart:math';
 
-import 'package:data/api/auth_api/auth_api.dart';
+import 'package:data/api/auth_api/user_api.dart';
 import 'package:data/api/auth_api/request/join_or_login_request.dart';
 import 'package:data/api/auth_api/response/join_or_login_response.dart';
 import 'package:data/api/common_dto/token_content_dto.dart';
@@ -25,7 +25,7 @@ void main() async {
     test("유저는 회원 가입을 진행 할 수 있다.", () async {
       final (AuthProvider, String) randToken = genRandToken();
 
-      AuthenticationAPI sut = AuthenticationAPIImpl(httpClient);
+      UserAPI sut = UserAPIImpl(httpClient);
       final String expectedAccess = Faker().randomGenerator.string(15);
       final String expectedRefresh = Faker().randomGenerator.string(15);
 

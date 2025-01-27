@@ -14,8 +14,8 @@ abstract interface class TokenProvider {
   static const String keyProvider = 'provider';
 
   /// 현재 로그인한 [AuthToken] 를 반환합니다.
-  Future<AuthToken?> findMe();
+  Future<AuthToken?> findToken();
 
   /// [user] 를 저장소에 저장합니다.
-  Future<AuthToken> save(AuthToken user);
+  Future<AuthToken> saveToken(AuthToken user);
 }

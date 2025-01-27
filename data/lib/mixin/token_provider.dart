@@ -8,7 +8,7 @@
 
 import 'package:core/model/auth_token/trd_auth_token.dart';
 import 'package:core/model/local_storage.dart';
-import 'package:data/api/auth_api/auth_api.dart';
+import 'package:data/api/auth_api/user_api.dart';
 import 'package:data/api/auth_api/request/join_or_login_request.dart';
 import 'package:data/api/auth_api/response/join_or_login_response.dart';
 import 'package:dart_scope_functions/dart_scope_functions.dart';
@@ -18,7 +18,7 @@ abstract interface class AuthenticationMixinBase {
   static const String _refreshToken = 'refresh_token';
   abstract final LocalStorage localStorage;
 
-  abstract final AuthenticationAPI authenticationAPI;
+  abstract final UserAPI authenticationAPI;
 }
 
 abstract mixin class AuthenticateUseCase implements AuthenticationMixinBase {
